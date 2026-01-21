@@ -4,18 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --color-primary-dark: #021024;
-  --color-deep-blue: #052659;
-  --color-muted-blue: #5483B3;
-  --color-soft-blue: #7DA0CA;
-  --color-highlight: #C1E8FF;
-  --color-background: #FAFBFC;
-  --color-surface: #FFFFFF;
-  --color-text-primary: #021024;
-  --color-text-secondary: #052659;
-  --color-text-muted: #5483B3;
-}
+/* Legacy variables removed. Using Tailwind Theme. */
 
 body {
   margin: 0;
@@ -65,26 +54,61 @@ code {
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 210 100% 8%;
-    --card: 0 0% 100%;
-    --card-foreground: 210 100% 8%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 100% 8%;
-    --primary: 216 93% 18%;
+    /* Base HSL Values - Premium Dark Theme */
+
+    /* Background: Void Black / Midnight Depth */
+    --background: 222 47% 11%;
+    /* #0f172a - Slate 900 base */
+    --background-deep: 222 47% 2%;
+    /* Almost black */
+    --foreground: 210 40% 98%;
+    /* White text */
+
+    /* Card: Glass Effect (Translucent Dark) */
+    --card: 217 33% 17%;
+    /* Slate 800ish */
+    --card-foreground: 210 40% 98%;
+
+    /* Popover */
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Primary: Electric Blue / Cyan Gradient Base */
+    --primary: 199 89% 48%;
+    /* #0ea5e9 - Sky 500 */
     --primary-foreground: 0 0% 100%;
-    --secondary: 207 44% 51%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 201 100% 94%;
-    --muted-foreground: 216 93% 18%;
-    --accent: 201 100% 90%;
-    --accent-foreground: 210 100% 8%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 207 44% 75%;
-    --input: 207 44% 85%;
-    --ring: 216 93% 18%;
-    --radius: 0.5rem;
+
+    /* Secondary: Deep Glass Overlay */
+    --secondary: 217 33% 17%;
+    /* Slate 800 */
+    --secondary-foreground: 210 40% 98%;
+
+    /* Muted: Subtle Text */
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    /* Slate 400 */
+
+    /* Accent: Violet/Purple for Gradients */
+    --accent: 258 90% 66%;
+    /* #a78bfa - Violet 400 */
+    --accent-foreground: 0 0% 100%;
+
+    /* Destructive */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Borders: Subtle Glass Borders */
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 199 89% 48%;
+
+    --radius: 0.75rem;
+
+    /* Custom Tokens for Glassmorphism */
+    --glass-border: 10% 255 255 0.1;
+    /* White with 10% opacity */
+    --glass-bg: 222 47% 11% 0.7;
+    /* 70% opacity dark slate */
   }
 }
 
@@ -92,36 +116,42 @@ code {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
 /* Typography scale */
+/* Typography scale */
 .text-display {
-  font-size: 3.5rem;
+  @apply font-serif text-5xl md:text-6xl font-medium tracking-tight text-primary;
   line-height: 1.1;
-  letter-spacing: -0.02em;
 }
 
 .text-headline {
-  font-size: 2.5rem;
+  @apply font-serif text-3xl md:text-4xl font-medium tracking-tight text-primary;
   line-height: 1.2;
-  letter-spacing: -0.01em;
 }
 
 .text-title {
-  font-size: 1.5rem;
+  @apply font-serif text-2xl font-medium text-primary;
   line-height: 1.3;
 }
 
 .text-body-large {
-  font-size: 1.125rem;
-  line-height: 1.7;
+  @apply font-sans text-lg text-muted-foreground leading-relaxed;
+}
+
+.text-label {
+  @apply font-sans text-xs font-semibold uppercase tracking-wider text-muted-foreground;
 }
 
 /* Transitions for interactive elements */
-a, button, input, textarea {
+a,
+button,
+input,
+textarea {
   transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 

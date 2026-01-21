@@ -16,15 +16,17 @@ export default function Header() {
   const location = useLocation();
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#C1E8FF]">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+    <header className="sticky top-0 z-50 bg-glass-bg backdrop-blur-lg border-b border-glass-border supports-[backdrop-filter]:bg-glass-bg/60">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo / Name */}
           <Link
             to="/"
-            className="font-serif text-xl font-semibold text-[#021024] hover:text-[#052659]"
+            className="font-serif text-xl font-semibold text-foreground hover:text-primary transition-colors tracking-tight flex items-center gap-2"
           >
-            Sahil Sharma
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Sahil Sharma
+            </span>
           </Link>
 
           {/* Navigation */}
@@ -36,15 +38,15 @@ export default function Header() {
                   key={item.name}
                   to={item.href}
                   className={cn(
-                    'text-sm font-medium transition-colors relative py-1',
+                    'text-sm font-medium transition-all duration-300 relative py-1 px-3 rounded-full hover:bg-white/5',
                     isActive
-                      ? 'text-[#021024]'
-                      : 'text-[#5483B3] hover:text-[#052659]'
+                      ? 'text-primary'
+                      : 'text-muted-foreground hover:text-foreground'
                   )}
                 >
                   {item.name}
                   {isActive && (
-                    <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#052659]" />
+                    <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-primary rounded-full" />
                   )}
                 </Link>
               );

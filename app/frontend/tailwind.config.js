@@ -17,6 +17,10 @@ export default {
             },
         },
         extend: {
+            fontFamily: {
+                sans: ["Inter", "sans-serif"],
+                serif: ["'Source Serif 4'", "serif"],
+            },
             colors: {
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
@@ -50,6 +54,10 @@ export default {
                 card: {
                     DEFAULT: "hsl(var(--card))",
                     foreground: "hsl(var(--card-foreground))",
+                },
+                glass: {
+                    bg: "hsl(var(--glass-bg))",
+                    border: "hsl(var(--glass-border))",
                 },
             },
             borderRadius: {

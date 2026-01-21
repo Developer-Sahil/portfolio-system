@@ -58,16 +58,16 @@ export default function WorkPage() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="py-16 lg:py-24">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+      <section className="py-16 lg:py-24 relative overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
-            <p className="text-[#5483B3] font-medium mb-4 tracking-wide uppercase text-sm">
+            <p className="text-accent font-medium mb-4 tracking-wide uppercase text-sm animate-in fade-in slide-in-from-bottom-2">
               Collaborate
             </p>
-            <h1 className="font-serif text-display text-[#021024] mb-6">
+            <h1 className="font-serif text-5xl md:text-6xl font-medium text-foreground mb-6 leading-tight">
               {workInfo.headline}
             </h1>
-            <p className="text-body-large text-[#052659] leading-relaxed">
+            <p className="text-xl text-muted-foreground leading-relaxed">
               {workInfo.description}
             </p>
           </div>
@@ -75,9 +75,9 @@ export default function WorkPage() {
       </section>
 
       {/* Collaboration Types */}
-      <section className="py-16 bg-white border-y border-[#C1E8FF]">
+      <section className="py-16 border-y border-glass-border bg-glass-bg/30">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <h2 className="font-serif text-headline text-[#021024] mb-12 text-center">
+          <h2 className="font-serif text-3xl font-semibold text-foreground mb-12 text-center">
             How We Can Work Together
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -86,15 +86,15 @@ export default function WorkPage() {
               return (
                 <div
                   key={collab.type}
-                  className="p-8 rounded-xl border border-[#C1E8FF] bg-[#FAFBFC] hover:bg-white hover:border-[#5483B3] transition-all duration-300"
+                  className="p-8 rounded-xl border border-glass-border bg-glass-bg hover:bg-glass-bg/80 hover:border-primary/50 transition-all duration-300 backdrop-blur-md"
                 >
-                  <div className="w-12 h-12 rounded-lg bg-[#C1E8FF] flex items-center justify-center mb-6">
-                    <IconComponent className="w-6 h-6 text-[#052659]" />
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
+                    <IconComponent className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-serif text-xl font-semibold text-[#021024] mb-3">
+                  <h3 className="font-serif text-xl font-semibold text-foreground mb-3">
                     {collab.type}
                   </h3>
-                  <p className="text-[#5483B3]">{collab.description}</p>
+                  <p className="text-muted-foreground">{collab.description}</p>
                 </div>
               );
             })}
@@ -107,10 +107,10 @@ export default function WorkPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
             <div className="flex items-center gap-3">
-              <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-[#021024] font-medium">{workInfo.availability}</span>
+              <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
+              <span className="text-foreground font-medium">{workInfo.availability}</span>
             </div>
-            <div className="flex items-center gap-3 text-[#5483B3]">
+            <div className="flex items-center gap-3 text-muted-foreground">
               <Clock className="w-4 h-4" />
               <span>{workInfo.responseTime}</span>
             </div>
@@ -119,53 +119,53 @@ export default function WorkPage() {
       </section>
 
       {/* Contact Form */}
-      <section className="py-16 lg:py-24 bg-white">
+      <section className="py-16 lg:py-24 relative">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Left Column - Info */}
             <div>
-              <h2 className="font-serif text-headline text-[#021024] mb-6">
+              <h2 className="font-serif text-4xl font-semibold text-foreground mb-6">
                 Get In Touch
               </h2>
-              <p className="text-[#052659] text-lg mb-8 leading-relaxed">
+              <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
                 Have an interesting project or opportunity? I'd love to hear about it.
                 Fill out the form and I'll get back to you within 48 hours.
               </p>
 
               <div className="space-y-6">
                 <div>
-                  <p className="text-sm font-medium text-[#5483B3] uppercase tracking-wide mb-2">
+                  <p className="text-sm font-medium text-accent uppercase tracking-wide mb-2">
                     Email
                   </p>
                   <a
                     href={`mailto:${personalInfo.social.email}`}
-                    className="text-[#021024] hover:text-[#052659]"
+                    className="text-foreground hover:text-primary transition-colors text-lg"
                   >
                     {personalInfo.social.email}
                   </a>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-[#5483B3] uppercase tracking-wide mb-2">
+                  <p className="text-sm font-medium text-accent uppercase tracking-wide mb-2">
                     LinkedIn
                   </p>
                   <a
                     href={personalInfo.social.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#021024] hover:text-[#052659]"
+                    className="text-foreground hover:text-primary transition-colors text-lg"
                   >
                     Connect on LinkedIn
                   </a>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-[#5483B3] uppercase tracking-wide mb-2">
+                  <p className="text-sm font-medium text-accent uppercase tracking-wide mb-2">
                     GitHub
                   </p>
                   <a
                     href={personalInfo.social.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#021024] hover:text-[#052659]"
+                    className="text-foreground hover:text-primary transition-colors text-lg"
                   >
                     View my code
                   </a>
@@ -176,12 +176,12 @@ export default function WorkPage() {
             {/* Right Column - Form */}
             <div>
               {isSubmitted ? (
-                <div className="bg-[#C1E8FF] rounded-xl p-12 text-center">
-                  <CheckCircle className="w-16 h-16 text-[#052659] mx-auto mb-6" />
-                  <h3 className="font-serif text-2xl font-semibold text-[#021024] mb-3">
+                <div className="bg-glass-bg border border-glass-border rounded-xl p-12 text-center backdrop-blur-md">
+                  <CheckCircle className="w-16 h-16 text-primary mx-auto mb-6" />
+                  <h3 className="font-serif text-2xl font-semibold text-foreground mb-3">
                     Message Sent!
                   </h3>
-                  <p className="text-[#052659]">
+                  <p className="text-muted-foreground">
                     Thank you for reaching out. I'll get back to you soon.
                   </p>
                 </div>
@@ -189,7 +189,7 @@ export default function WorkPage() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="name" className="text-[#021024]">
+                      <Label htmlFor="name" className="text-foreground">
                         Name *
                       </Label>
                       <Input
@@ -200,11 +200,11 @@ export default function WorkPage() {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="Your name"
-                        className="border-[#C1E8FF] focus:border-[#5483B3] focus:ring-[#5483B3]"
+                        className="bg-background/50 border-glass-border focus:border-primary focus:ring-primary text-foreground placeholder:text-muted-foreground"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-[#021024]">
+                      <Label htmlFor="email" className="text-foreground">
                         Email *
                       </Label>
                       <Input
@@ -215,14 +215,14 @@ export default function WorkPage() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="you@example.com"
-                        className="border-[#C1E8FF] focus:border-[#5483B3] focus:ring-[#5483B3]"
+                        className="bg-background/50 border-glass-border focus:border-primary focus:ring-primary text-foreground placeholder:text-muted-foreground"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="company" className="text-[#021024]">
+                      <Label htmlFor="company" className="text-foreground">
                         Company
                       </Label>
                       <Input
@@ -232,11 +232,11 @@ export default function WorkPage() {
                         value={formData.company}
                         onChange={handleChange}
                         placeholder="Your company"
-                        className="border-[#C1E8FF] focus:border-[#5483B3] focus:ring-[#5483B3]"
+                        className="bg-background/50 border-glass-border focus:border-primary focus:ring-primary text-foreground placeholder:text-muted-foreground"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="type" className="text-[#021024]">
+                      <Label htmlFor="type" className="text-foreground">
                         Inquiry Type *
                       </Label>
                       <select
@@ -245,7 +245,7 @@ export default function WorkPage() {
                         required
                         value={formData.type}
                         onChange={handleChange}
-                        className="w-full h-10 px-3 rounded-md border border-[#C1E8FF] bg-white text-[#021024] focus:border-[#5483B3] focus:ring-1 focus:ring-[#5483B3] focus:outline-none"
+                        className="w-full h-10 px-3 rounded-md border border-glass-border bg-background/50 text-foreground focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
                       >
                         <option value="">Select type...</option>
                         <option value="fulltime">Full-time Role</option>
@@ -258,7 +258,7 @@ export default function WorkPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message" className="text-[#021024]">
+                    <Label htmlFor="message" className="text-foreground">
                       Message *
                     </Label>
                     <Textarea
@@ -269,18 +269,18 @@ export default function WorkPage() {
                       onChange={handleChange}
                       placeholder="Tell me about your project or opportunity..."
                       rows={6}
-                      className="border-[#C1E8FF] focus:border-[#5483B3] focus:ring-[#5483B3] resize-none"
+                      className="bg-background/50 border-glass-border focus:border-primary focus:ring-primary text-foreground placeholder:text-muted-foreground resize-none"
                     />
                   </div>
 
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-[#021024] hover:bg-[#052659] text-white py-6"
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-6 border-none shadow-lg shadow-primary/20"
                   >
                     {isSubmitting ? (
                       <span className="flex items-center gap-2">
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
                         Sending...
                       </span>
                     ) : (

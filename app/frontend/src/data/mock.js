@@ -239,7 +239,17 @@ export const writings = [
     readingTime: 8,
     publishedAt: "2024-02-15T09:00:00Z",
     tags: ["Node.js", "Performance"],
-    series: "Backend Engineering"
+    series: "Backend Engineering",
+    content: `Scaling Node.js applications is vastly different from scaling traditional multi-threaded applications like Java or C#. Because Node.js runs on a single thread (the Event Loop), we can't just throw more threads at the problem.
+
+Instead, we have to scale in two dimensions:
+1. **Vertical Scaling (Clustering)**: Since a single Node.js process uses only one CPU core, we need to fork the process to utilize multi-core systems. The native 'cluster' module allows us to spin up a worker process for each core, sharing the same server port.
+2. **Horizontal Scaling (Load Balancing)**: When a single machine isn't enough, we add more servers behind a load balancer (like Nginx or HAProxy).
+
+However, scaling introduces new challenges:
+- **Shared State**: You can no longer store session data in memory. You need a distributed store like Redis.
+- **Socket Connections**: If you use WebSockets, you need a pub/sub mechanism (again, Redis) to broadcast messages across nodes.
+- **Database Connection Pools**: Each worker process opens its own connections. You need to be careful not to exhaust your database's max connection limit.`
   },
   {
     id: "2",
@@ -250,6 +260,43 @@ export const writings = [
     readingTime: 12,
     publishedAt: "2024-01-20T10:00:00Z",
     tags: ["React", "Frontend"],
-    series: null
+    series: null,
+    content: `I've seen too many React codebases turn into "spaghetti code" after a year of development. It usually starts with valid intentions: "We'll just put everything in components for now and refactor later."
+
+The problem is, "later" never comes.
+
+To build sustainable React applications, I follow a few core principles:
+1. **Feature-First Folder Structure**: Instead of grouping by technology (components, store, hooks), group by feature (auth, dashboard, settings). This makes the codebase easier to navigate and allows you to "delete" a feature by removing a single folder.
+2. **The "Container/Presentational" Pattern (Modernized)**: While hooks have replaced Higher-Order Components, the separation of concerns is still valid. Keep your logic (data fetching, state) separate from your UI rendering.
+3. **Colocation**: Keep styles, tests, and types close to the component that uses them. If a utility function is only used by one feature, it belongs in that feature's folder, not a global 'utils' folder.
+
+By imposing these constraints early, we allow the team to move faster without stepping on each other's toes.`
+  }
+];
+
+export const testimonials = [
+  {
+    id: "1",
+    name: "Sarah Chen",
+    designation: "CTO at TechFlow",
+    review: "Sahil is one of those rare engineers who understands both the micro-details of code and the macro-implications of architecture. He completely transformed our payment infrastructure.",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
+    rating: 5
+  },
+  {
+    id: "2",
+    name: "Michael Ross",
+    designation: "Lead Engineer at DataSphere",
+    review: "Working with Sahil was a masterclass in system design. His ability to anticipate failure scenarios and build resilience into the core of the system is unmatched.",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
+    rating: 5
+  },
+  {
+    id: "3",
+    name: "Emily Watson",
+    designation: "Product Manager at CloudScale",
+    review: "Beyond his technical skills, Sahil is an incredible communicator. He bridges the gap between engineering and product effortlessly, ensuring we always build the right thing.",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
+    rating: 5
   }
 ];
