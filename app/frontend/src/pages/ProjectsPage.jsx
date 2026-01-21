@@ -45,7 +45,8 @@ export default function ProjectsPage() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="py-16 lg:py-20 border-b border-glass-border">
+      {/* Hero Section */}
+      <section className="py-16 lg:py-20">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <p className="text-accent font-medium mb-4 tracking-wide uppercase text-sm animate-in fade-in slide-in-from-bottom-2">
             Portfolio
@@ -61,7 +62,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* Filters Section */}
-      <section className="py-8 bg-glass-bg border-b border-glass-border backdrop-blur-md sticky top-16 z-40">
+      <section className="py-8 bg-glass-bg backdrop-blur-md sticky top-16 z-40">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-4 md:items-center justify-between">
             {/* Search */}
@@ -106,6 +107,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* Projects Grid */}
+      {/* Projects Grid */}
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           {loading ? (
@@ -122,42 +124,46 @@ export default function ProjectsPage() {
                 <Link
                   key={project.id}
                   to={`/projects/${project.slug}`}
-                  className="group bg-glass-bg rounded-xl overflow-hidden border border-glass-border hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 backdrop-blur-sm"
+                  className="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-md hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1 transition-all duration-300"
                 >
-                  <div className="aspect-[16/10] overflow-hidden bg-secondary/30 relative">
+                  <div className="aspect-[16/10] overflow-hidden bg-slate-100 relative">
                     <img
                       src={project.thumbnail}
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-60" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                   <div className="p-6">
                     {project.featured && (
-                      <Badge className="mb-3 bg-primary text-primary-foreground text-xs border-none">
+                      <Badge variant="star-gold" className="mb-3 border-none">
                         Featured
                       </Badge>
                     )}
-                    <h3 className="font-serif text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                    <h3 className="font-serif text-xl font-bold text-slate-800 mb-2 group-hover:text-primary transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                    <p className="text-slate-500 text-sm mb-4 line-clamp-2 leading-relaxed">
                       {project.oneLiner}
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      {project.techStack && project.techStack.slice(0, 4).map((tech) => (
-                        <Badge
-                          key={tech}
-                          variant="secondary"
-                          className="bg-secondary/30 text-muted-foreground hover:bg-secondary/50 border-glass-border text-xs"
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
+                      {project.techStack && project.techStack.slice(0, 4).map((tech, index) => {
+                        const variants = ["ice-blue", "void-purple", "dendro-green"];
+                        const variant = variants[index % variants.length];
+                        return (
+                          <Badge
+                            key={tech}
+                            variant={variant}
+                            className="bg-opacity-50"
+                          >
+                            {tech}
+                          </Badge>
+                        )
+                      })}
                       {project.techStack && project.techStack.length > 4 && (
                         <Badge
                           variant="secondary"
-                          className="bg-secondary/30 text-muted-foreground border-glass-border text-xs"
+                          className="bg-slate-100 text-slate-500 hover:bg-slate-200 border-none text-xs"
                         >
                           +{project.techStack.length - 4}
                         </Badge>

@@ -22,48 +22,60 @@ export default {
                 serif: ["'Source Serif 4'", "serif"],
             },
             colors: {
-                border: "hsl(var(--border))",
-                input: "hsl(var(--input))",
-                ring: "hsl(var(--ring))",
-                background: "hsl(var(--background))",
-                foreground: "hsl(var(--foreground))",
+                border: "var(--border)",
+                input: "var(--input)",
+                ring: "var(--ring)",
+                background: "var(--background)",
+                foreground: "var(--foreground)",
                 primary: {
-                    DEFAULT: "hsl(var(--primary))",
-                    foreground: "hsl(var(--primary-foreground))",
+                    DEFAULT: "var(--primary)",
+                    foreground: "var(--primary-foreground)",
                 },
                 secondary: {
-                    DEFAULT: "hsl(var(--secondary))",
-                    foreground: "hsl(var(--secondary-foreground))",
+                    DEFAULT: "var(--secondary)",
+                    foreground: "var(--secondary-foreground)",
                 },
                 destructive: {
-                    DEFAULT: "hsl(var(--destructive))",
-                    foreground: "hsl(var(--destructive-foreground))",
+                    DEFAULT: "var(--destructive)",
+                    foreground: "var(--destructive-foreground)",
                 },
                 muted: {
-                    DEFAULT: "hsl(var(--muted))",
-                    foreground: "hsl(var(--muted-foreground))",
+                    DEFAULT: "var(--muted)",
+                    foreground: "var(--muted-foreground)",
                 },
                 accent: {
-                    DEFAULT: "hsl(var(--accent))",
-                    foreground: "hsl(var(--accent-foreground))",
+                    DEFAULT: "var(--accent)",
+                    foreground: "var(--accent-foreground)",
                 },
                 popover: {
-                    DEFAULT: "hsl(var(--popover))",
-                    foreground: "hsl(var(--popover-foreground))",
+                    DEFAULT: "var(--popover)",
+                    foreground: "var(--popover-foreground)",
                 },
                 card: {
-                    DEFAULT: "hsl(var(--card))",
-                    foreground: "hsl(var(--card-foreground))",
+                    DEFAULT: "var(--card)",
+                    foreground: "var(--card-foreground)",
                 },
                 glass: {
-                    bg: "hsl(var(--glass-bg))",
-                    border: "hsl(var(--glass-border))",
+                    bg: "rgba(255, 255, 255, 0.7)", // Frosted glass for light theme
+                    border: "rgba(255, 255, 255, 0.5)",
                 },
+                celestial: {
+                    dark: "#1e293b", // Midnight blue text
+                    light: "#f1f5f9", // Cloud white bg
+                    blue: "#3b82f6", // Primary action
+                    ice: "#dbeafe", // Secondary/Accent
+                    gold: "#fbbf24", // Stars/Accents
+                },
+            },
+            backgroundImage: {
+                "celestial-gradient": "linear-gradient(135deg, #f0f4f8 0%, #dbeafe 100%)", /* Soft blue clouds */
+                "card-gradient": "linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)",
             },
             borderRadius: {
                 lg: "var(--radius)",
                 md: "calc(var(--radius) - 2px)",
                 sm: "calc(var(--radius) - 4px)",
+                pill: "9999px", // For pill shapes
             },
             keyframes: {
                 "accordion-down": {
@@ -74,10 +86,15 @@ export default {
                     from: { height: "var(--radix-accordion-content-height)" },
                     to: { height: "0" },
                 },
+                "float": {
+                    "0%, 100%": { transform: "translateY(0)" },
+                    "50%": { transform: "translateY(-5px)" },
+                }
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
+                "float": "float 3s ease-in-out infinite",
             },
         },
     },

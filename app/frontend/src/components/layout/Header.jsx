@@ -16,43 +16,38 @@ export default function Header() {
   const location = useLocation();
 
   return (
-    <header className="sticky top-0 z-50 bg-glass-bg backdrop-blur-lg border-b border-glass-border supports-[backdrop-filter]:bg-glass-bg/60">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo / Name */}
-          <Link
-            to="/"
-            className="font-serif text-xl font-semibold text-foreground hover:text-primary transition-colors tracking-tight flex items-center gap-2"
-          >
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Sahil Sharma
-            </span>
-          </Link>
+    <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-4xl px-4">
+      <div className="bg-white/80 backdrop-blur-xl border border-white/50 shadow-lg shadow-blue-900/5 rounded-full px-6 py-3 flex items-center justify-between">
+        {/* Logo / Name */}
+        <Link
+          to="/"
+          className="font-serif text-lg font-bold text-slate-800 hover:text-primary transition-colors tracking-tight flex items-center gap-2"
+        >
+          <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            Sahil Sharma
+          </span>
+        </Link>
 
-          {/* Navigation */}
-          <nav className="flex items-center gap-8">
-            {navigation.map((item) => {
-              const isActive = location.pathname === item.href;
-              return (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={cn(
-                    'text-sm font-medium transition-all duration-300 relative py-1 px-3 rounded-full hover:bg-white/5',
-                    isActive
-                      ? 'text-primary'
-                      : 'text-muted-foreground hover:text-foreground'
-                  )}
-                >
-                  {item.name}
-                  {isActive && (
-                    <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-primary rounded-full" />
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
-        </div>
+        {/* Navigation */}
+        <nav className="flex items-center gap-1">
+          {navigation.map((item) => {
+            const isActive = location.pathname === item.href;
+            return (
+              <Link
+                key={item.name}
+                to={item.href}
+                className={cn(
+                  'text-sm font-medium transition-all duration-300 relative py-2 px-4 rounded-full',
+                  isActive
+                    ? 'bg-primary text-white shadow-md shadow-blue-500/20'
+                    : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
+                )}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
+        </nav>
       </div>
     </header>
   );
