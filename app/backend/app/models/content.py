@@ -17,6 +17,7 @@ class ProjectBase(BaseModel):
     lld: Optional[str] = None
     architectureDecisions: Optional[str] = None
     failurePoints: Optional[str] = None
+    motivation: Optional[str] = None
     
 class ProjectCreate(ProjectBase):
     pass

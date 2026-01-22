@@ -20,6 +20,12 @@ const ProjectEditorPage = () => {
         techStack: '', // Comma separated for input
         status: 'published',
         overview: '',
+
+        motivation: '',
+        hld: '',
+        lld: '',
+        architectureDecisions: '',
+        failurePoints: '',
         liveDemo: '',
         github: ''
     });
@@ -78,6 +84,8 @@ const ProjectEditorPage = () => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     }
+
+
 
     return (
         <div className="min-h-screen bg-background p-8">
@@ -149,6 +157,69 @@ const ProjectEditorPage = () => {
                             onChange={handleChange}
                             required
                         />
+                    </div>
+
+                    <div className="space-y-2">
+                        <Label htmlFor="motivation">Motivation (Markdown)</Label>
+                        <textarea
+                            id="motivation"
+                            name="motivation"
+                            className="flex min-h-[150px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                            value={formData.motivation}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div className="space-y-6 pt-4 border-t border-border">
+                        <h3 className="text-lg font-medium">Architecture Details (Markdown)</h3>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <Label htmlFor="hld">High-Level Design (HLD)</Label>
+                                <textarea
+                                    id="hld"
+                                    name="hld"
+                                    className="flex min-h-[150px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    value={formData.hld || ''}
+                                    onChange={handleChange}
+                                />
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="lld">Low-Level Design (LLD)</Label>
+                                <textarea
+                                    id="lld"
+                                    name="lld"
+                                    className="flex min-h-[150px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    value={formData.lld || ''}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <Label htmlFor="architectureDecisions">Architecture Decisions</Label>
+                                <textarea
+                                    id="architectureDecisions"
+                                    name="architectureDecisions"
+                                    className="flex min-h-[150px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    value={formData.architectureDecisions || ''}
+                                    onChange={handleChange}
+                                />
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="failurePoints">Failure Points</Label>
+                                <textarea
+                                    id="failurePoints"
+                                    name="failurePoints"
+                                    className="flex min-h-[150px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    value={formData.failurePoints || ''}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                        </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

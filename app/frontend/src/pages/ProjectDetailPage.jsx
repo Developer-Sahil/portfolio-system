@@ -11,8 +11,9 @@ import {
   Loader2,
 } from 'lucide-react';
 import Layout from '../components/layout/Layout';
-// import { allProjects } from '../data/mock'; // Removed mock
 import { Badge } from '../components/ui/badge';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { Button } from '../components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 
@@ -154,7 +155,7 @@ export default function ProjectDetailPage() {
                     href={project.liveDemo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-full font-medium hover:opacity-90 transition-opacity shadow-lg shadow-primary/20"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-accent text-celestial-dark px-6 py-3 rounded-full font-medium hover:opacity-90 transition-opacity shadow-lg shadow-primary/20"
                   >
                     <ExternalLink className="w-4 h-4" />
                     Live Demo
@@ -282,6 +283,12 @@ export default function ProjectDetailPage() {
                 Overview
               </TabsTrigger>
               <TabsTrigger
+                value="motivation"
+                className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary rounded-full px-6 transition-all"
+              >
+                Motivation
+              </TabsTrigger>
+              <TabsTrigger
                 value="architecture"
                 className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary rounded-full px-6 transition-all"
               >
@@ -300,9 +307,22 @@ export default function ProjectDetailPage() {
                 <h3 className="font-serif text-2xl font-semibold text-foreground mb-4">
                   Project Overview
                 </h3>
-                <p className="text-muted-foreground text-lg leading-relaxed">
-                  {project.overview}
-                </p>
+                <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground leading-relaxed">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{project.overview}</ReactMarkdown>
+                </div>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="motivation" className="mt-0">
+              <div className="bg-glass-bg rounded-xl p-8 border border-glass-border backdrop-blur-md">
+                <h3 className="font-serif text-2xl font-semibold text-foreground mb-4">
+                  Motivation
+                </h3>
+                <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground leading-relaxed">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {project.motivation || 'Motivation details coming soon.'}
+                  </ReactMarkdown>
+                </div>
               </div>
             </TabsContent>
 
@@ -325,9 +345,11 @@ export default function ProjectDetailPage() {
                   </button>
                   {expandedSection === 'hld' && (
                     <div className="px-6 pb-6 border-t border-glass-border pt-6">
-                      <p className="text-muted-foreground leading-relaxed">
-                        {project.hld || 'High-level design documentation coming soon.'}
-                      </p>
+                      <div className="prose prose-sm dark:prose-invert max-w-none text-muted-foreground leading-relaxed">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                          {project.hld || 'High-level design documentation coming soon.'}
+                        </ReactMarkdown>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -349,9 +371,11 @@ export default function ProjectDetailPage() {
                   </button>
                   {expandedSection === 'lld' && (
                     <div className="px-6 pb-6 border-t border-glass-border pt-6">
-                      <p className="text-muted-foreground leading-relaxed">
-                        {project.lld || 'Low-level design documentation coming soon.'}
-                      </p>
+                      <div className="prose prose-sm dark:prose-invert max-w-none text-muted-foreground leading-relaxed">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                          {project.lld || 'Low-level design documentation coming soon.'}
+                        </ReactMarkdown>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -365,9 +389,11 @@ export default function ProjectDetailPage() {
                   <h3 className="font-serif text-xl font-semibold text-foreground mb-4">
                     Architecture Decisions
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {project.architectureDecisions || 'Architecture decision records coming soon.'}
-                  </p>
+                  <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground leading-relaxed">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {project.architectureDecisions || 'Architecture decision records coming soon.'}
+                    </ReactMarkdown>
+                  </div>
                 </div>
 
                 {/* Failure Points */}
@@ -375,9 +401,11 @@ export default function ProjectDetailPage() {
                   <h3 className="font-serif text-xl font-semibold text-foreground mb-4">
                     Failure Points & Scaling Notes
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {project.failurePoints || 'Failure analysis and scaling notes coming soon.'}
-                  </p>
+                  <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground leading-relaxed">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {project.failurePoints || 'Failure analysis and scaling notes coming soon.'}
+                    </ReactMarkdown>
+                  </div>
                 </div>
               </div>
             </TabsContent>

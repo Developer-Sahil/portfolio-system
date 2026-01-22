@@ -37,7 +37,7 @@ const ProjectsAdminPage = () => {
                 setProjects(projects.filter(p => p.id !== id));
             } catch (err) {
                 console.error("Failed to delete project", err);
-                alert("Failed to delete project");
+                alert(`Failed to delete project: ${err.message}. Check console for details.`);
             }
         }
     }

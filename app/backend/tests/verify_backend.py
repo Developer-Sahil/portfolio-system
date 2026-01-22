@@ -65,7 +65,11 @@ def test_public_and_protected_routes():
                  "publishedAt": "2023-01-01T00:00:00"
              }
 
-        response = client.post(f"/api/v1/{resource}/", json=dummy_payload)
+        response = client.post(
+            f"/api/v1/{resource}/", 
+            json=dummy_payload,
+            headers={"Authorization": "Bearer invalid_token"}
+        )
         
         if response.status_code == 401:
             print(f"[PASS] POST /{resource} (No Token): 401 Unauthorized")

@@ -52,9 +52,11 @@ def update_project(project_id: str, project: ProjectCreate, user=Depends(get_cur
 
 @router.delete("/{project_id}")
 def delete_project(project_id: str, user=Depends(get_current_user)):
+    print(f"Attempting to delete project: {project_id} by user: {user['uid']}")
     doc_ref = db.collection(u'projects').document(project_id)
     doc = doc_ref.get()
     if not doc.exists:
+        print(f"Project not found: {project_id}")
         raise HTTPException(status_code=404, detail="Project not found")
     
     doc_ref.delete()
