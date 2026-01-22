@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { ArrowLeft } from 'lucide-react';
+import LoadingState from '@/components/ui/LoadingState';
 import { Textarea } from '@/components/ui/textarea'; // Assuming you have this or use generic textarea
 
 const ProjectEditorPage = () => {
@@ -86,6 +87,14 @@ const ProjectEditorPage = () => {
     }
 
 
+
+    if (loading && isEditing && !formData.title) {
+        return (
+            <div className="min-h-screen bg-background flex items-center justify-center">
+                <LoadingState message="Loading Editor..." />
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-background p-8">

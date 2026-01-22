@@ -10,6 +10,7 @@ import {
   Sparkles,
   Loader2,
 } from 'lucide-react';
+import LoadingState from '../components/ui/LoadingState';
 import Layout from '../components/layout/Layout';
 import { Badge } from '../components/ui/badge';
 import ReactMarkdown from 'react-markdown';
@@ -46,9 +47,8 @@ export default function ProjectDetailPage() {
   if (loading) {
     return (
       <Layout>
-        <div className="max-w-6xl mx-auto px-6 lg:px-8 py-24 text-center">
-          <Loader2 className="w-8 h-8 animate-spin mx-auto text-[#5483B3] mb-4" />
-          <p className="text-[#5483B3]">Loading Project...</p>
+        <div className="min-h-[50vh] flex items-center justify-center">
+          <LoadingState message="Retrieving System Data..." />
         </div>
       </Layout>
     );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Code2, Brain, Database, Cloud, Trophy, Award, Star, Zap, Terminal } from 'lucide-react';
+import { ArrowRight, Code2, Brain, Database, Cloud, Trophy, Award, Star, Zap, Terminal, Coffee, Folder, Users, FileText, Activity, Fingerprint, Lightbulb, BarChart3 } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import { personalInfo, expertiseDomains, testimonials } from '../data/mock';
 import api from '../lib/api';
@@ -114,35 +114,50 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center group hover:-translate-y-1 transition-transform duration-300">
-              <p className="font-serif text-5xl lg:text-6xl font-bold text-blue-600 drop-shadow-sm">
+              <div className="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Folder className="w-8 h-8 text-blue-600" />
+              </div>
+              <p className="font-serif text-4xl lg:text-5xl font-bold text-slate-900 drop-shadow-sm">
                 {projects.length}+
               </p>
-              <p className="text-slate-500 mt-2 text-sm font-semibold uppercase tracking-wide">
+              <p className="text-slate-500 mt-2 text-sm font-medium">
                 Projects Built
               </p>
             </div>
+
             <div className="text-center group hover:-translate-y-1 transition-transform duration-300">
-              <p className="font-serif text-5xl lg:text-6xl font-bold text-blue-600 drop-shadow-sm">
-                {personalInfo.stats.systemsDesigned}
-              </p>
-              <p className="text-slate-500 mt-2 text-sm font-semibold uppercase tracking-wide">
-                Systems Designed
-              </p>
-            </div>
-            <div className="text-center group hover:-translate-y-1 transition-transform duration-300">
-              <p className="font-serif text-5xl lg:text-6xl font-bold text-blue-600 drop-shadow-sm">
-                {personalInfo.stats.yearsExperience}+
-              </p>
-              <p className="text-slate-500 mt-2 text-sm font-semibold uppercase tracking-wide">
-                Years Experience
-              </p>
-            </div>
-            <div className="text-center group hover:-translate-y-1 transition-transform duration-300">
-              <p className="font-serif text-5xl lg:text-6xl font-bold text-blue-600 drop-shadow-sm">
+              <div className="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <FileText className="w-8 h-8 text-blue-600" />
+              </div>
+              <p className="font-serif text-4xl lg:text-5xl font-bold text-slate-900 drop-shadow-sm">
                 {writings.length}+
               </p>
-              <p className="text-slate-500 mt-2 text-sm font-semibold uppercase tracking-wide">
+              <p className="text-slate-500 mt-2 text-sm font-medium">
                 Articles Written
+              </p>
+            </div>
+
+            <div className="text-center group hover:-translate-y-1 transition-transform duration-300">
+              <div className="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Code2 className="w-8 h-8 text-blue-600" />
+              </div>
+              <p className="font-serif text-4xl lg:text-5xl font-bold text-slate-900 drop-shadow-sm">
+                50K+
+              </p>
+              <p className="text-slate-500 mt-2 text-sm font-medium">
+                Lines of Code
+              </p>
+            </div>
+
+            <div className="text-center group hover:-translate-y-1 transition-transform duration-300">
+              <div className="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Coffee className="w-8 h-8 text-blue-600" />
+              </div>
+              <p className="font-serif text-4xl lg:text-5xl font-bold text-slate-900 drop-shadow-sm">
+                ∞
+              </p>
+              <p className="text-slate-500 mt-2 text-sm font-medium">
+                Cups of Coffee
               </p>
             </div>
           </div>
@@ -308,28 +323,48 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {expertiseDomains.map((domain) => {
-              const IconComponent = domainIcons[domain.domain] || Code2;
+              const IconComponent = {
+                'Software Engineering': Code2,
+                'Machine Learning': Brain,
+                'Data Engineering': Database,
+                'Data Analytics': BarChart3,
+              }[domain.domain] || Code2;
+
+              const isMain = domain.domain === 'Software Engineering';
+
               return (
                 <div
                   key={domain.domain}
-                  className="p-8 rounded-[2rem] border border-slate-100 bg-white hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1 transition-all duration-300"
+                  className={`relative p-8 rounded-[2rem] border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${isMain
+                    ? 'md:col-span-3 bg-slate-900 border-slate-800 text-white shadow-2xl shadow-blue-900/20'
+                    : 'bg-white border-slate-100 hover:shadow-blue-900/5'
+                    }`}
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center mb-6 text-blue-600">
+                  {isMain && (
+                    <div className="absolute top-8 right-8 bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-blue-500/30">
+                      Main Domain
+                    </div>
+                  )}
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${isMain ? 'bg-blue-600/20 text-blue-400' : 'bg-blue-50 text-blue-600'
+                    }`}>
                     <IconComponent className="w-7 h-7" />
                   </div>
-                  <h3 className="font-serif text-xl font-bold text-slate-900 mb-3">
+                  <h3 className={`font-serif text-xl font-bold mb-3 ${isMain ? 'text-white text-2xl' : 'text-slate-900'}`}>
                     {domain.domain}
                   </h3>
-                  <p className="text-slate-500 mb-6 leading-relaxed">
+                  <p className={`mb-6 leading-relaxed ${isMain ? 'text-slate-300 max-w-2xl text-lg' : 'text-slate-500'}`}>
                     {domain.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {domain.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="text-xs font-semibold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-100"
+                        className={`text-xs font-semibold px-3 py-1 rounded-full border ${isMain
+                          ? 'text-blue-200 bg-blue-900/30 border-blue-800'
+                          : 'text-blue-700 bg-blue-50 border-blue-100'
+                          }`}
                       >
                         {tech}
                       </span>
@@ -356,11 +391,11 @@ export default function HomePage() {
                 </div>
 
                 <h3 className="font-serif text-2xl lg:text-3xl text-slate-900 font-bold mb-6 leading-snug">
-                  Scaled a distributed payment processing engine to handle $50M+ daily transaction volume with 99.99% uptime.
+                  Secured 2nd Prize in Return Journey Hackathon organized by IIT-Kanpur.
                 </h3>
 
                 <p className="text-slate-600 text-lg leading-relaxed max-w-2xl">
-                  Redesigned the legacy monolith into event-driven microservices using Kafka and Golang, reducing latency by 40% and eliminating single points of failure.
+                  Awarded for designing and developing a responsive tourism web app focused on seamless user experience.
                 </p>
               </div>
             </div>
@@ -390,6 +425,92 @@ export default function HomePage() {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* Personality Section */}
+      <section className="py-24 bg-slate-50 relative overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <p className="text-blue-500 font-bold mb-2 tracking-wide uppercase text-sm">
+              The Human Design
+            </p>
+            <h2 className="font-serif text-3xl md:text-4xl font-medium tracking-tight text-slate-900">
+              Personality Archetype
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Left Column: Image/Visual */}
+            <div className="relative group h-full">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-200 to-violet-200 rounded-[2.5rem] rotate-3 opacity-50 group-hover:rotate-6 transition-transform duration-500"></div>
+              <div className="relative bg-white rounded-[2.5rem] border border-slate-100 shadow-xl shadow-blue-900/5 overflow-hidden h-full min-h-[500px] flex items-center justify-center">
+                <img src="/images/intp.jpg" className="w-full h-full object-cover" alt="INTP Personality" />
+              </div>
+            </div>
+
+            {/* Right Column: Content (Identity -> Strengths -> Interests) */}
+            <div className="space-y-6">
+              {/* Identity Card */}
+              <div className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-lg shadow-blue-900/5 transition-transform hover:-translate-y-1 duration-300 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full blur-2xl opacity-50 -mr-10 -mt-10"></div>
+                <div className="relative z-10">
+                  <h3 className="font-serif text-3xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+                    INTP <span className="text-blue-600">Logician</span>
+                    <Brain className="w-6 h-6 text-blue-400" />
+                  </h3>
+                  <p className="text-slate-500 font-medium mb-6 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+                    Analyst
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                    Rational
+                  </p>
+                  <blockquote className="text-slate-600 leading-relaxed italic border-l-4 border-blue-500 pl-4 py-1">
+                    "Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning."
+                  </blockquote>
+                </div>
+              </div>
+
+              {/* Strengths */}
+              <div className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-lg shadow-blue-900/5 relative overflow-hidden group hover:border-blue-200 transition-colors duration-300">
+                <div className="absolute top-6 right-6 p-3 bg-blue-50 rounded-2xl text-blue-600 opacity-50 group-hover:opacity-100 transition-opacity">
+                  <Zap className="w-6 h-6" />
+                </div>
+                <h4 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <span className="w-2 h-8 bg-blue-500 rounded-full"></span>
+                  Strengths
+                </h4>
+                <p className="text-slate-600 leading-relaxed pr-12">
+                  Great Analysts and Abstract Thinkers, Imaginative, Original, Open-Minded, Enthusiastic, Objective, Honest and Straightforward.
+                </p>
+              </div>
+
+              {/* Interests */}
+              <div className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-lg shadow-blue-900/5 relative overflow-hidden group hover:border-violet-200 transition-colors duration-300">
+                <div className="absolute top-6 right-6 p-3 bg-violet-50 rounded-2xl text-violet-500 opacity-50 group-hover:opacity-100 transition-opacity">
+                  <Lightbulb className="w-6 h-6" />
+                </div>
+                <h4 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <span className="w-2 h-8 bg-violet-500 rounded-full"></span>
+                  Interests
+                </h4>
+                <div className="flex flex-wrap gap-2 pr-12">
+                  {[
+                    "Systems Thinking",
+                    "Artificial Intelligence",
+                    "Philosophy & Logic",
+                    "Sci-Fi & Futurism",
+                    "Strategy Gaming",
+                    "Tech Trends"
+                  ].map((interest) => (
+                    <span key={interest} className="px-3 py-1 bg-violet-50 text-violet-700 text-sm font-medium rounded-full border border-violet-100">
+                      {interest}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -6,6 +6,7 @@ import Layout from '../components/layout/Layout';
 import api from '../lib/api';
 import { Badge } from '../components/ui/badge';
 import { Input } from '../components/ui/input';
+import LoadingState from '../components/ui/LoadingState';
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState([]);
@@ -111,7 +112,9 @@ export default function ProjectsPage() {
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           {loading ? (
-            <div className="text-center py-16 text-muted-foreground">Loading Projects...</div>
+            <div className="min-h-[40vh] flex items-center justify-center">
+              <LoadingState message="Accessing Project Archives..." />
+            </div>
           ) : filteredProjects.length === 0 ? (
             <div className="text-center py-16">
               <p className="text-muted-foreground text-lg">

@@ -7,6 +7,8 @@ import {
   Send,
   CheckCircle,
   Clock,
+  Briefcase,
+  GraduationCap
 } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import { workInfo, personalInfo } from '../data/mock';
@@ -20,6 +22,8 @@ const iconMap = {
   FileCode,
   Lightbulb,
   Mic,
+  Briefcase,
+  GraduationCap
 };
 
 export default function WorkPage() {
@@ -252,8 +256,8 @@ export default function WorkPage() {
                         <option value="">Select type...</option>
                         <option value="fulltime">Full-time Role</option>
                         <option value="contract">Contract Work</option>
-                        <option value="advisory">Technical Advisory</option>
-                        <option value="speaking">Speaking/Workshop</option>
+                        <option value="internship">Internships</option>
+                        <option value="mentoring">Mentoring Students</option>
                         <option value="other">Other</option>
                       </select>
                     </div>

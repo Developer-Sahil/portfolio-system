@@ -19,9 +19,9 @@ export const personalInfo = {
     articlesWritten: 18
   },
   social: {
-    github: "https://github.com/sahilsharma",
-    linkedin: "https://linkedin.com/in/sahilsharma",
-    email: "sahil@example.com"
+    github: "https://github.com/Developer-Sahil",
+    linkedin: "https://www.linkedin.com/in/sahil-sharma-921969239/",
+    email: "sahilsharmamrp@gmail.com"
   }
 };
 
@@ -131,14 +131,14 @@ export const workInfo = {
       icon: "FileCode"
     },
     {
-      type: "Technical Advisory",
-      description: "Advising startups on architecture decisions, tech stack selection, and scaling strategies.",
-      icon: "Lightbulb"
+      type: "Internships",
+      description: "Open to internship opportunities to apply my skills and contribute to challenging projects.",
+      icon: "Briefcase"
     },
     {
-      type: "Speaking & Workshops",
-      description: "Speaking on system design, ML engineering, and software architecture.",
-      icon: "Mic"
+      type: "Mentoring Students",
+      description: "Guiding students and peers in software development, career growth, and technical skills.",
+      icon: "GraduationCap"
     }
   ],
   availability: "Currently open to opportunities",
@@ -147,14 +147,9 @@ export const workInfo = {
 
 export const expertiseDomains = [
   {
-    domain: "Backend Engineering",
-    description: "Distributed systems, APIs, microservices, and everything that runs on servers.",
-    technologies: ["Python", "Go", "Node.js", "FastAPI", "PostgreSQL", "Redis"]
-  },
-  {
-    domain: "Machine Learning",
-    description: "From experimentation to production—models that actually work in the real world.",
-    technologies: ["PyTorch", "TensorFlow", "scikit-learn", "MLflow", "Kubeflow"]
+    domain: "Software Engineering",
+    description: "Architecting robust, scalable systems using modern design patterns and best practices. From microservices to modular monoliths.",
+    technologies: ["Python", "Go", "Node.js", "FastAPI", "PostgreSQL", "Redis", "System Design"]
   },
   {
     domain: "Data Engineering",
@@ -162,9 +157,14 @@ export const expertiseDomains = [
     technologies: ["Spark", "Airflow", "dbt", "Kafka", "Snowflake"]
   },
   {
-    domain: "Cloud & DevOps",
-    description: "Infrastructure as code, CI/CD, and making deployments boring (in a good way).",
-    technologies: ["AWS", "GCP", "Kubernetes", "Terraform", "Docker"]
+    domain: "Data Analytics",
+    description: "Turning raw data into actionable insights through visualization and statistical analysis.",
+    technologies: ["SQL", "Pandas", "Tableau", "PowerBI", "Python"]
+  },
+  {
+    domain: "Machine Learning",
+    description: "From experimentation to production—models that actually work in the real world.",
+    technologies: ["PyTorch", "TensorFlow", "scikit-learn", "MLflow", "Kubeflow"]
   }
 ];
 
