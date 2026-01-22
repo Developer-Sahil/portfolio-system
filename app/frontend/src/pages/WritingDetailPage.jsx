@@ -91,6 +91,13 @@ export default function WritingDetailPage() {
                                 <Clock className="w-4 h-4" />
                                 {writing.readingTime} min read
                             </span>
+                            {writing.canonicalUrl && (
+                                <a href={writing.canonicalUrl} target="_blank" rel="noopener noreferrer">
+                                    <Badge variant="outline" className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors py-1 px-3 ml-2 border-primary/20 bg-primary/5 text-primary">
+                                        Read on {new URL(writing.canonicalUrl).hostname} ↗
+                                    </Badge>
+                                </a>
+                            )}
                         </div>
 
                         <div className="flex flex-wrap gap-2">

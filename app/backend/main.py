@@ -30,6 +30,9 @@ app.include_router(writings.router, prefix="/api/v1/writings", tags=["Writings"]
 app.include_router(systems.router, prefix="/api/v1/systems", tags=["Systems"])
 app.include_router(vault.router, prefix="/api/v1/vault", tags=["Vault"])
 app.include_router(arena.router, prefix="/api/v1/arena", tags=["Arena"])
+from app.routers import messages
+app.include_router(messages.router, prefix="/api/v1/messages", tags=["Messages"])
+
 
 @app.get("/")
 def read_root():

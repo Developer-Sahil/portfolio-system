@@ -46,17 +46,20 @@ export default function WorkPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-
-    // Reset form after showing success
-    setTimeout(() => {
-      setFormData({ name: '', email: '', company: '', type: '', message: '' });
-      setIsSubmitted(false);
-    }, 3000);
+    try {
+      await api.post('/messages/', formData);
+      setIsSubmitted(true);
+      setTimeout(() => {
+        setFormData({ name: '', email: '', company: '', type: '', message: '' });
+        setIsSubmitted(false);
+      }, 3000);
+    } catch (error) {
+      console.error("Failed to send message", error);
+      alert("Failed to send message. Please try again. Error: " + (error.response?.data?.detail || error.message));
+      // Optional: Add error handling/toast here
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

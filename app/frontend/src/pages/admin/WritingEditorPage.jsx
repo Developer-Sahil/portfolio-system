@@ -136,9 +136,15 @@ const WritingEditorPage = () => {
                         />
                     </div>
 
-                    <div className="space-y-2">
-                        <Label htmlFor="thumbnail">Thumbnail URL</Label>
-                        <Input id="thumbnail" name="thumbnail" value={formData.thumbnail} onChange={handleChange} required />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                            <Label htmlFor="thumbnail">Thumbnail URL</Label>
+                            <Input id="thumbnail" name="thumbnail" value={formData.thumbnail} onChange={handleChange} required />
+                        </div>
+                        <div className="space-y-2">
+                            <Label htmlFor="canonicalUrl">Canonical URL (External Link)</Label>
+                            <Input id="canonicalUrl" name="canonicalUrl" value={formData.canonicalUrl || ''} onChange={handleChange} placeholder="https://medium.com/..." />
+                        </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

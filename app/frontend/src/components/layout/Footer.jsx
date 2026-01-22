@@ -5,7 +5,7 @@ import { personalInfo } from '../../data/mock';
 
 export default function Footer() {
   return (
-    <footer className="bg-background-deep text-foreground border-t border-glass-border">
+    <footer className="bg-slate-950 text-slate-200 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
@@ -79,7 +79,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 pt-8 border-t border-glass-border">
-          <p className="text-muted-foreground text-sm text-center">
+          <p className="text-slate-400 text-sm text-center">
             © {new Date().getFullYear()} {personalInfo.name}. Built with deliberate intent.
           </p>
         </div>

@@ -45,6 +45,8 @@ export default function HomePage() {
     fetchData();
   }, []);
 
+
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -323,104 +325,159 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            {expertiseDomains.map((domain) => {
-              const IconComponent = {
-                'Software Engineering': Code2,
-                'Machine Learning': Brain,
-                'Data Engineering': Database,
-                'Data Analytics': BarChart3,
-              }[domain.domain] || Code2;
+          <div className="grid grid-cols-1 gap-8 mb-16">
+            {/* Main Domain - Software Engineering */}
+            {expertiseDomains.filter(d => d.domain === 'Software Engineering').map((domain) => (
+              <div
+                key={domain.domain}
+                className="relative p-8 md:p-12 rounded-[2.5rem] bg-slate-900 border border-slate-800 text-white shadow-2xl shadow-blue-900/20 overflow-hidden group"
+              >
+                {/* Background effects */}
+                <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -mr-20 -mt-20 transition-opacity group-hover:opacity-70"></div>
 
-              const isMain = domain.domain === 'Software Engineering';
-
-              return (
-                <div
-                  key={domain.domain}
-                  className={`relative p-8 rounded-[2rem] border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${isMain
-                    ? 'md:col-span-3 bg-slate-900 border-slate-800 text-white shadow-2xl shadow-blue-900/20'
-                    : 'bg-white border-slate-100 hover:shadow-blue-900/5'
-                    }`}
-                >
-                  {isMain && (
-                    <div className="absolute top-8 right-8 bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-blue-500/30">
-                      Main Domain
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-8">
+                    <div className="w-16 h-16 rounded-2xl bg-blue-600/20 text-blue-400 flex items-center justify-center">
+                      <Code2 className="w-8 h-8" />
                     </div>
-                  )}
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${isMain ? 'bg-blue-600/20 text-blue-400' : 'bg-blue-50 text-blue-600'
-                    }`}>
-                    <IconComponent className="w-7 h-7" />
+                    <div className="bg-blue-500/20 text-blue-300 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border border-blue-500/30">
+                      Main Focus
+                    </div>
                   </div>
-                  <h3 className={`font-serif text-xl font-bold mb-3 ${isMain ? 'text-white text-2xl' : 'text-slate-900'}`}>
+
+                  <h3 className="font-serif text-3xl md:text-4xl font-bold mb-6 text-white">
                     {domain.domain}
                   </h3>
-                  <p className={`mb-6 leading-relaxed ${isMain ? 'text-slate-300 max-w-2xl text-lg' : 'text-slate-500'}`}>
+                  <p className="text-slate-300 text-lg leading-relaxed max-w-3xl mb-8">
                     {domain.description}
                   </p>
+
                   <div className="flex flex-wrap gap-2">
                     {domain.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className={`text-xs font-semibold px-3 py-1 rounded-full border ${isMain
-                          ? 'text-blue-200 bg-blue-900/30 border-blue-800'
-                          : 'text-blue-700 bg-blue-50 border-blue-100'
-                          }`}
+                        className="text-sm font-medium px-4 py-2 rounded-full text-blue-200 bg-blue-900/30 border border-blue-800"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
+
+            {/* Other Interests - Mini Cards */}
+            <div>
+              <h3 className="text-xl font-serif font-bold text-slate-900 mb-6 mt-8 flex items-center gap-2">
+                <span className="w-8 h-1 bg-blue-500 rounded-full"></span>
+                Other Interests
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {expertiseDomains.filter(d => d.domain !== 'Software Engineering').map((domain) => {
+                  const IconComponent = {
+                    'Machine Learning': Brain,
+                    'Data Engineering': Database,
+                    'Data Analytics': BarChart3,
+                    'Cloud & DevOps': Cloud,
+                  }[domain.domain] || Code2;
+
+                  return (
+                    <div
+                      key={domain.domain}
+                      className="bg-white border border-slate-100 p-6 rounded-2xl hover:shadow-lg hover:shadow-blue-900/5 hover:border-blue-200 transition-all duration-300 flex items-center gap-4 group cursor-default"
+                    >
+                      <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <IconComponent className="w-6 h-6" />
+                      </div>
+                      <span className="font-bold text-slate-800 group-hover:text-primary transition-colors">
+                        {domain.domain}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
 
-          {/* Achievement & Badges Section (New) */}
+          {/* Achievement & Badges Section (Redesigned) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            {/* Achievement - 65% width approx (8 cols) */}
-            <div className="lg:col-span-8 bg-gradient-to-br from-blue-50 to-white border border-slate-100 rounded-[2.5rem] p-10 lg:p-12 relative overflow-hidden group shadow-lg shadow-blue-900/5">
-              {/* Background Glow */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-50 -mr-16 -mt-16 transition-opacity group-hover:opacity-70"></div>
+            {/* Competitive Excellence (Left Card) */}
+            <div className="lg:col-span-7 bg-blue-50 border border-blue-100 rounded-[2.5rem] p-10 lg:p-12 relative overflow-hidden group shadow-xl shadow-blue-900/5">
+              {/* Background Glows */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -mr-16 -mt-16 transition-opacity group-hover:opacity-30"></div>
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -ml-16 -mb-16 transition-opacity group-hover:opacity-30"></div>
 
               <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 bg-blue-100 rounded-lg text-blue-600">
-                    <Trophy className="w-5 h-5" />
-                  </div>
-                  <span className="text-sm font-bold uppercase tracking-wider text-blue-600">Key Achievement</span>
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="text-xs font-bold uppercase tracking-[0.15em] text-blue-600">Competitive Excellence</span>
+                  <div className="h-px w-24 bg-blue-200"></div>
                 </div>
 
-                <h3 className="font-serif text-2xl lg:text-3xl text-slate-900 font-bold mb-6 leading-snug">
-                  Secured 2nd Prize in Return Journey Hackathon organized by IIT-Kanpur.
-                </h3>
+                <div className="flex flex-col md:flex-row gap-8 items-start mb-8">
+                  <div className="w-20 h-20 rounded-2xl bg-white border border-blue-100 flex items-center justify-center flex-shrink-0">
+                    <Trophy className="w-10 h-10 text-blue-600" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="px-3 py-1 rounded-md bg-white border border-blue-100 text-[10px] font-bold uppercase tracking-wider text-blue-600 shadow-sm">
+                        National Level Podium
+                      </span>
+                      <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">
+                        IIT Kanpur GDSC • 2024
+                      </span>
+                    </div>
+                    <h3 className="font-sans text-5xl lg:text-6xl text-slate-900 font-extrabold italic tracking-tighter leading-none mb-1">
+                      1st Runner Up
+                    </h3>
+                  </div>
+                </div>
 
-                <p className="text-slate-600 text-lg leading-relaxed max-w-2xl">
-                  Awarded for designing and developing a responsive tourism web app focused on seamless user experience.
+                <p className="text-blue-900/70 font-light text-lg leading-relaxed max-w-lg mb-8">
+                  Outranked <span className="text-blue-700 font-semibold">800+ teams</span> at "The Return Journey" National Hackathon. Recognised for <span className="text-blue-600 font-medium">architectural innovation</span> and high-pressure system delivery.
                 </p>
+
+                <div className="border-l-2 border-blue-200 pl-4">
+                  <p className="text-xs font-bold uppercase tracking-wider text-blue-400 mb-1">Success Rate</p>
+                  <p className="text-2xl font-serif font-bold text-slate-900">Top 0.2%</p>
+                </div>
               </div>
             </div>
 
-            {/* Badges - Rest width (4 cols) */}
-            <div className="lg:col-span-4 grid grid-cols-2 gap-4">
-              {/* Badge 1 */}
-              <div className="bg-white border border-slate-100 p-6 rounded-[2rem] flex flex-col items-center justify-center text-center hover:shadow-lg hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1">
-                <Award className="w-8 h-8 text-blue-500 mb-3" />
-                <span className="font-bold text-slate-700 text-sm">System Design</span>
+            {/* Technical Badges (Right Area - 2x2 Grid) */}
+            <div className="lg:col-span-5 flex flex-col justify-center">
+              <div className="flex items-center gap-4 mb-8">
+                <span className="text-xs font-bold uppercase tracking-[0.15em] text-blue-400">Technical Badges</span>
+                <div className="h-px w-full bg-slate-800"></div>
               </div>
-              {/* Badge 2 */}
-              <div className="bg-white border border-slate-100 p-6 rounded-[2rem] flex flex-col items-center justify-center text-center hover:shadow-lg hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1">
-                <Terminal className="w-8 h-8 text-blue-500 mb-3" />
-                <span className="font-bold text-slate-700 text-sm">Clean Code</span>
-              </div>
-              {/* Badge 3 */}
-              <div className="bg-white border border-slate-100 p-6 rounded-[2rem] flex flex-col items-center justify-center text-center hover:shadow-lg hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1">
-                <Zap className="w-8 h-8 text-blue-500 mb-3" />
-                <span className="font-bold text-slate-700 text-sm">High Perf</span>
-              </div>
-              {/* Badge 4 */}
-              <div className="bg-white border border-slate-100 p-6 rounded-[2rem] flex flex-col items-center justify-center text-center hover:shadow-lg hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1">
-                <Star className="w-8 h-8 text-blue-500 mb-3" />
-                <span className="font-bold text-slate-700 text-sm">Mentorship</span>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Badge 1 */}
+                <div className="bg-blue-50 border border-blue-100 hover:border-blue-500/30 p-6 rounded-2xl transition-all duration-300 group">
+                  <Cloud className="w-6 h-6 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
+                  <h4 className="text-slate-900 font-bold text-sm uppercase tracking-wide mb-1">Cloud Architecting</h4>
+                  <p className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">AWS Academy</p>
+                </div>
+
+                {/* Badge 2 */}
+                <div className="bg-blue-50 border border-blue-100 hover:border-blue-500/30 p-6 rounded-2xl transition-all duration-300 group">
+                  <Award className="w-6 h-6 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
+                  <h4 className="text-slate-900 font-bold text-sm uppercase tracking-wide mb-1">Full Stack Dev</h4>
+                  <p className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">IBM Professional</p>
+                </div>
+
+                {/* Badge 3 */}
+                <div className="bg-blue-50 border border-blue-100 hover:border-blue-500/30 p-6 rounded-2xl transition-all duration-300 group">
+                  <Database className="w-6 h-6 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
+                  <h4 className="text-slate-900 font-bold text-sm uppercase tracking-wide mb-1">Cloud Foundations</h4>
+                  <p className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">AWS Academy</p>
+                </div>
+
+                {/* Badge 4 */}
+                <div className="bg-blue-50 border border-blue-100 hover:border-blue-500/30 p-6 rounded-2xl transition-all duration-300 group">
+                  <Coffee className="w-6 h-6 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
+                  <h4 className="text-slate-900 font-bold text-sm uppercase tracking-wide mb-1">Java Programming</h4>
+                  <p className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Professional Cert</p>
+                </div>
               </div>
             </div>
           </div>
@@ -514,7 +571,19 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Quote Section (Independent) */}
+      <section className="py-24 bg-white/50">
+        <div className="max-w-4xl mx-auto text-center px-6">
+          <blockquote className="font-serif text-3xl md:text-4xl text-slate-800 leading-relaxed italic font-medium relative">
+            <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-6xl text-blue-100 font-serif opacity-50">"</span>
+            Your story may not have such a happy beginning. But that doesn't make who you are. It's the rest of your story, who you choose to be
+          </blockquote>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
+      {/* Testimonials Section (Hidden for later release) */}
+      {/* 
       <section className="py-24 bg-glass-bg/20">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -548,7 +617,8 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> 
+      */}
 
       {/* CTA Section */}
       <section className="py-32 relative overflow-hidden">

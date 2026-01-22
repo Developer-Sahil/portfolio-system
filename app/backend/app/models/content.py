@@ -34,6 +34,7 @@ class WritingBase(BaseModel):
     readingTime: int
     tags: List[str]
     series: Optional[str] = None
+    canonicalUrl: Optional[str] = None
     publishedAt: datetime
 
 class WritingCreate(WritingBase):
@@ -72,6 +73,8 @@ class ArenaThreadBase(BaseModel):
     title: str
     content: str
     publishedAt: datetime
+    likes: int = 0
+    dislikes: int = 0
     
 class ArenaThreadCreate(ArenaThreadBase):
     responses: List[dict] = []
@@ -79,3 +82,21 @@ class ArenaThreadCreate(ArenaThreadBase):
 class ArenaThread(ArenaThreadBase):
     id: str
     responses: List[dict] = []
+
+class MessageBase(BaseModel):
+    name: str
+    email: str
+    company: Optional[str] = None
+    type: str # internship, mentoring, etc.
+    message: str
+
+class MessageCreate(MessageBase):
+    pass
+
+class Message(MessageBase):
+    id: str
+    createdAt: datetime
+    read: bool = False
+
+
+
