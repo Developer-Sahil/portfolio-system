@@ -15,6 +15,7 @@ const domainIcons = {
 
 export default function HomePage() {
   const [projects, setProjects] = useState([]);
+  const [totalProjects, setTotalProjects] = useState(0);
   const [writings, setWritings] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -26,10 +27,18 @@ export default function HomePage() {
           api.get('/writings/')
         ]);
 
-        // Filter featured projects or take first 3 if none featured
+        // Projects Logic
         const allProjects = projectsRes.data || [];
-        const featured = allProjects.filter(p => p.featured && p.status === 'published');
-        setProjects(featured.length > 0 ? featured.slice(0, 3) : allProjects.slice(0, 3));
+        const publishedProjects = allProjects.filter(p => p.status === 'published');
+
+        // 1. Set total count for stats (only published ones)
+        setTotalProjects(publishedProjects.length);
+
+        // 2. Determine which to show (Featured > First 3 Published)
+        const featured = publishedProjects.filter(p => p.featured);
+        const projectsToShow = featured.length > 0 ? featured.slice(0, 3) : publishedProjects.slice(0, 3);
+
+        setProjects(projectsToShow);
 
         // Sort writings by date desc and take top 2
         const allWritings = writingsRes.data || [];
@@ -120,7 +129,7 @@ export default function HomePage() {
                 <Folder className="w-8 h-8 text-blue-600" />
               </div>
               <p className="font-serif text-4xl lg:text-5xl font-bold text-slate-900 drop-shadow-sm">
-                {projects.length}+
+                {totalProjects}+
               </p>
               <p className="text-slate-500 mt-2 text-sm font-medium">
                 Projects Built

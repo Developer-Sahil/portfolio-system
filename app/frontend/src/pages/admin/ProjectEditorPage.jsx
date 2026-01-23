@@ -19,6 +19,7 @@ const ProjectEditorPage = () => {
         thumbnail: '',
         oneLiner: '',
         techStack: '', // Comma separated for input
+        featured: false,
         status: 'published',
         overview: '',
 
@@ -82,8 +83,11 @@ const ProjectEditorPage = () => {
     }
 
     function handleChange(e) {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        const { name, value, type, checked } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: type === 'checkbox' ? checked : value
+        }));
     }
 
 
@@ -150,10 +154,22 @@ const ProjectEditorPage = () => {
                                 <option value="draft">Draft</option>
                             </select>
                         </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="techStack">Tech Stack (comma separated)</Label>
-                            <Input id="techStack" name="techStack" value={formData.techStack} onChange={handleChange} placeholder="React, Python, Firebase" required />
+                        <div className="space-y-2 flex items-center gap-2 pt-8">
+                            <input
+                                type="checkbox"
+                                id="featured"
+                                name="featured"
+                                className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600"
+                                checked={formData.featured}
+                                onChange={handleChange}
+                            />
+                            <Label htmlFor="featured" className="mb-0 cursor-pointer">Featured Project</Label>
                         </div>
+                    </div>
+
+                    <div className="space-y-2">
+                        <Label htmlFor="techStack">Tech Stack (comma separated)</Label>
+                        <Input id="techStack" name="techStack" value={formData.techStack} onChange={handleChange} placeholder="React, Python, Firebase" required />
                     </div>
 
                     <div className="space-y-2">
