@@ -470,8 +470,8 @@ export default function HomePage() {
                 {/* Badge 2 */}
                 <div className="bg-blue-50 border border-blue-100 hover:border-blue-500/30 p-6 rounded-2xl transition-all duration-300 group">
                   <Award className="w-6 h-6 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
-                  <h4 className="text-slate-900 font-bold text-sm uppercase tracking-wide mb-1">Full Stack Dev</h4>
-                  <p className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">IBM Professional</p>
+                  <h4 className="text-slate-900 font-bold text-sm uppercase tracking-wide mb-1">Analytics in BigQuery</h4>
+                  <p className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Google Skills</p>
                 </div>
 
                 {/* Badge 3 */}
@@ -484,8 +484,8 @@ export default function HomePage() {
                 {/* Badge 4 */}
                 <div className="bg-blue-50 border border-blue-100 hover:border-blue-500/30 p-6 rounded-2xl transition-all duration-300 group">
                   <Coffee className="w-6 h-6 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
-                  <h4 className="text-slate-900 font-bold text-sm uppercase tracking-wide mb-1">Java Programming</h4>
-                  <p className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Professional Cert</p>
+                  <h4 className="text-slate-900 font-bold text-sm uppercase tracking-wide mb-1">MLOps for Generative AI</h4>
+                  <p className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Google Skills</p>
                 </div>
               </div>
             </div>

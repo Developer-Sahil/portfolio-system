@@ -39,7 +39,7 @@ function App() {
             <Route path="/work" element={<WorkPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/projects/:slug" element={<ProjectDetailPage />} />
-            <Route path="/arena" element={<ArenaPage />} />
+            {/* <Route path="/arena" element={<ArenaPage />} /> */}
             <Route path="/systems" element={<SystemsPage />} />
             <Route path="/vault" element={<VaultPage />} />
             <Route path="/writings" element={<WritingsPage />} />

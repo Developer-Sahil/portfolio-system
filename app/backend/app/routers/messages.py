@@ -20,7 +20,8 @@ async def create_message(message: MessageCreate):
     
     doc_ref.set(message_dict)
 
-    # Send Email Notification
+    # Send Email Notification (Formspree)
+    # We pass the visitor's email as the recipient so it's used as the Reply-To header
     try:
         subject = f"New Portfolio Inquiry: {message.type} from {message.name}"
         body = f"""
@@ -32,11 +33,10 @@ async def create_message(message: MessageCreate):
         <p><strong>Message:</strong></p>
         <p>{message.message}</p>
         """
-        dest_email = os.getenv("MAIL_USERNAME")
-        if dest_email:
-             await email_service.send_email(subject, [dest_email], body)
+        
+        await email_service.send_email(subject, [message.email], body)
     except Exception as e:
-        print(f"Failed to send email: {e}")
+        print(f"Failed to trigger email notification: {e}")
         # Log error but don't fail the request
     
     return message_dict

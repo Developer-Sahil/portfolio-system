@@ -1,32 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Wrench } from 'lucide-react';
 import Layout from '../components/layout/Layout';
-// import { systems } from '../data/mock'; // Removed mock
-import api from '../lib/api';
+import { systems as systemsData } from '../data/mock';
+// import api from '../lib/api';
 import { Badge } from '../components/ui/badge';
 import { Input } from '../components/ui/input';
 
 export default function SystemsPage() {
-  const [systems, setSystems] = useState([]);
+  const systems = systemsData;
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [expandedSystem, setExpandedSystem] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchSystems();
-  }, []);
-
-  async function fetchSystems() {
-    try {
-      const response = await api.get('/systems/');
-      setSystems(response.data);
-    } catch (err) {
-      console.error("Failed to fetch systems", err);
-    } finally {
-      setLoading(false);
-    }
-  }
+  const loading = false;
 
   // Get all unique categories
   const allCategories = [...new Set(systems.map((s) => s.category))];

@@ -8,9 +8,11 @@ import {
   CheckCircle,
   Clock,
   Briefcase,
-  GraduationCap
+  GraduationCap,
+  Info
 } from 'lucide-react';
 import Layout from '../components/layout/Layout';
+import api from '../lib/api';
 import { workInfo, personalInfo } from '../data/mock';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
@@ -31,7 +33,7 @@ export default function WorkPage() {
     name: '',
     email: '',
     company: '',
-    type: '',
+    type: 'Review', // Default type since field is removed
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,7 +52,7 @@ export default function WorkPage() {
       await api.post('/messages/', formData);
       setIsSubmitted(true);
       setTimeout(() => {
-        setFormData({ name: '', email: '', company: '', type: '', message: '' });
+        setFormData({ name: '', email: '', company: '', type: 'Review', message: '' });
         setIsSubmitted(false);
       }, 3000);
     } catch (error) {
@@ -179,6 +181,12 @@ export default function WorkPage() {
                     View my code
                   </a>
                 </div>
+                <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4 flex items-start gap-3">
+                  <Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+                  <p className="text-sm text-blue-700 leading-relaxed">
+                    For formal or work-related inquiries, using <strong>Gmail</strong> application is highly recommended to ensure reliable communication.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -196,6 +204,10 @@ export default function WorkPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 md:p-10 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-blue-900/5">
+                  <h3 className="font-serif text-2xl font-bold text-slate-900 mb-2">
+                    Review Form
+                  </h3>
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="name" className="text-slate-700 font-medium ml-1">
@@ -229,41 +241,19 @@ export default function WorkPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="company" className="text-slate-700 font-medium ml-1">
-                        Company
-                      </Label>
-                      <Input
-                        id="company"
-                        name="company"
-                        type="text"
-                        value={formData.company}
-                        onChange={handleChange}
-                        placeholder="Your company"
-                        className="bg-slate-50 border-slate-200 focus:border-blue-500 focus:ring-blue-500 text-slate-900 placeholder:text-slate-400 rounded-2xl h-12"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="type" className="text-slate-700 font-medium ml-1">
-                        Inquiry Type *
-                      </Label>
-                      <select
-                        id="type"
-                        name="type"
-                        required
-                        value={formData.type}
-                        onChange={handleChange}
-                        className="w-full h-12 px-3 rounded-2xl border border-slate-200 bg-slate-50 text-slate-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                      >
-                        <option value="">Select type...</option>
-                        <option value="fulltime">Full-time Role</option>
-                        <option value="contract">Contract Work</option>
-                        <option value="internship">Internships</option>
-                        <option value="mentoring">Mentoring Students</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="company" className="text-slate-700 font-medium ml-1">
+                      Company
+                    </Label>
+                    <Input
+                      id="company"
+                      name="company"
+                      type="text"
+                      value={formData.company}
+                      onChange={handleChange}
+                      placeholder="Your company"
+                      className="bg-slate-50 border-slate-200 focus:border-blue-500 focus:ring-blue-500 text-slate-900 placeholder:text-slate-400 rounded-2xl h-12"
+                    />
                   </div>
 
                   <div className="space-y-2">

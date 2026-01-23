@@ -1,32 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Tag, Folder, BookmarkIcon } from 'lucide-react';
 import Layout from '../components/layout/Layout';
-// import { vaultEntries } from '../data/mock'; // Removed mock
-import api from '../lib/api';
+import { vaultEntries as vaultData } from '../data/mock';
+// import api from '../lib/api';
 import { Badge } from '../components/ui/badge';
 import { Input } from '../components/ui/input';
 
 export default function VaultPage() {
-  const [vaultEntries, setVaultEntries] = useState([]);
+  const vaultEntries = vaultData;
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedTag, setSelectedTag] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchVaultEntries();
-  }, []);
-
-  async function fetchVaultEntries() {
-    try {
-      const response = await api.get('/vault/');
-      setVaultEntries(response.data);
-    } catch (err) {
-      console.error("Failed to fetch vault entries", err);
-    } finally {
-      setLoading(false);
-    }
-  }
+  const loading = false;
 
   // Get all unique categories and tags
   const allCategories = [...new Set(vaultEntries.map((v) => v.category))];

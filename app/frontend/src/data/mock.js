@@ -2,7 +2,7 @@
 
 export const personalInfo = {
   name: "Sahil Sharma",
-  title: "Software Developer",
+  title: "Upcoming Software Engineer @ IBM",
   tagline: "System Thinker. Builder. Engineer.",
   doctrine: "I don't just write code—I architect systems that scale, adapt, and endure. Every line serves a purpose. Every decision is deliberate.",
   expertise: [
@@ -121,13 +121,13 @@ export const workInfo = {
   description: "I partner with teams and companies who value depth over speed, quality over quantity. If you're building something meaningful and need engineering expertise that thinks in systems, let's talk.",
   collaborationTypes: [
     {
-      type: "Full-time Roles",
-      description: "Seeking senior/staff engineering positions where I can architect systems and mentor teams.",
+      type: "Freelance Work",
+      description: "Seeking freelance projects where I can architect systems and deliver high-quality code.",
       icon: "Building2"
     },
     {
       type: "Contract Work",
-      description: "Available for 3-6 month engagements on complex technical challenges.",
+      description: "Available for 1-3 month engagements on complex technical challenges.",
       icon: "FileCode"
     },
     {
@@ -149,7 +149,7 @@ export const expertiseDomains = [
   {
     domain: "Software Engineering",
     description: "Architecting robust, scalable systems using modern design patterns and best practices. From microservices to modular monoliths.",
-    technologies: ["Python", "Go", "Node.js", "FastAPI", "PostgreSQL", "Redis", "System Design"]
+    technologies: ["Python", "Node.js", "FastAPI", "SQL", "Google Cloud Platform", "Firebase", "System Design"]
   },
   {
     domain: "Data Engineering",
@@ -196,19 +196,136 @@ export const systems = [
     id: "1",
     name: "VS Code",
     category: "Editor",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg",
+    logo: "https://cdn.simpleicons.org/visualstudiocode",
     usage: "My daily driver for everything from frontend to backend.",
     whyChosen: "Extensibility and ecosystem. The Vim extension is non-negotiable.",
     whereItBreaks: "Large monorepos can still make it stutter, even with optimizations."
   },
   {
     id: "2",
-    name: "Linear",
+    name: "Google Cloud",
+    category: "Cloud",
+    logo: "https://cdn.simpleicons.org/googlecloud",
+    usage: "Hosting, serverless functions, and data storage.",
+    whyChosen: "Best-in-class AI/ML services and developer experience.",
+    whereItBreaks: "IAM policy management can get complex."
+  },
+  {
+    id: "3",
+    name: "Firebase",
+    category: "Backend as a Service",
+    logo: "https://cdn.simpleicons.org/firebase",
+    usage: "Auth, realtime database, and hosting for MVPs.",
+    whyChosen: "Rapid prototyping and seamless integration.",
+    whereItBreaks: "Complex queries in Firestore can be limiting."
+  },
+  {
+    id: "4",
+    name: "Antigravity",
     category: "Productivity",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Linear_logo.svg/1200px-Linear_logo.svg.png",
-    usage: "Issue tracking and project management.",
-    whyChosen: "It's fast, keyboard-centric, and gets out of the way.",
-    whereItBreaks: "Complex cross-team dependencies can be hard to visualize."
+    logo: "https://cdn-icons-png.flaticon.com/512/3233/3233483.png",
+    usage: "Advanced agentic workflow automation.",
+    whyChosen: "Automates complex coding tasks effortlessly.",
+    whereItBreaks: "Requires precise context management."
+  },
+  {
+    id: "5",
+    name: "Google AI Studio",
+    category: "AI/ML",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg",
+    usage: "Prototyping and experimenting with Gemini models.",
+    whyChosen: "Fastest way to test prompts and model capabilities.",
+    whereItBreaks: "Rate limits on free tier."
+  },
+  {
+    id: "6",
+    name: "Kaggle",
+    category: "Data Science",
+    logo: "https://cdn.simpleicons.org/kaggle",
+    usage: "Datasets, notebooks, and competitions.",
+    whyChosen: "Community and access to diverse datasets.",
+    whereItBreaks: "Notebook kernels have resource limits."
+  },
+  {
+    id: "7",
+    name: "GitHub",
+    category: "Version Control",
+    logo: "https://cdn.simpleicons.org/github",
+    usage: "Code hosting, CI/CD actions, and collaboration.",
+    whyChosen: "Industry standard for open source and private repos.",
+    whereItBreaks: "Actions runner costs can scale up."
+  },
+  {
+    id: "8",
+    name: "Figma",
+    category: "Design",
+    logo: "https://cdn.simpleicons.org/figma",
+    usage: "UI/UX design and prototyping.",
+    whyChosen: "Real-time collaboration and dev mode.",
+    whereItBreaks: "Large files can be slow in browser."
+  },
+  {
+    id: "9",
+    name: "Medium",
+    category: "Writing",
+    logo: "https://cdn.simpleicons.org/medium",
+    usage: "Publishing technical articles and blogs.",
+    whyChosen: "Clean reading experience and audience reach.",
+    whereItBreaks: "Paywall can be annoying for some readers."
+  },
+  {
+    id: "10",
+    name: "LeetCode",
+    category: "Learning",
+    logo: "https://cdn.simpleicons.org/leetcode",
+    usage: "Algorithm practice and interview prep.",
+    whyChosen: "Extensive problem set and active community.",
+    whereItBreaks: "Sometimes test cases are too specific."
+  },
+  {
+    id: "11",
+    name: "Python",
+    category: "Language",
+    logo: "https://cdn.simpleicons.org/python",
+    usage: "Backend, AI/ML, and scripting.",
+    whyChosen: "Versatility and massive library ecosystem.",
+    whereItBreaks: "Global Interpreter Lock (GIL) limits concurrency."
+  },
+  {
+    id: "12",
+    name: "Pinterest",
+    category: "Inspiration",
+    logo: "https://cdn.simpleicons.org/pinterest",
+    usage: "Visual inspiration and mood boarding.",
+    whyChosen: "Great for discovering UI patterns and aesthetics.",
+    whereItBreaks: "Too many ads in the feed."
+  },
+  {
+    id: "13",
+    name: "Scikit-learn",
+    category: "AI/ML",
+    logo: "https://cdn.simpleicons.org/scikitlearn",
+    usage: "Traditional machine learning algorithms.",
+    whyChosen: "Simple, efficient, and well-documented API.",
+    whereItBreaks: "Not suitable for deep learning."
+  },
+  {
+    id: "14",
+    name: "TensorFlow",
+    category: "AI/ML",
+    logo: "https://cdn.simpleicons.org/tensorflow",
+    usage: "Deep learning model training and deployment.",
+    whyChosen: "Production-ready scaling and TFX ecosystem.",
+    whereItBreaks: "Steep learning curve compared to PyTorch."
+  },
+  {
+    id: "15",
+    name: "Roadmap.sh",
+    category: "Learning",
+    logo: "https://www.google.com/s2/favicons?domain=roadmap.sh&sz=64",
+    usage: "Tracking learning paths and skills.",
+    whyChosen: "Visual and structured guides for tech stacks.",
+    whereItBreaks: "Can be overwhelming with too many paths."
   }
 ];
 
@@ -226,6 +343,48 @@ export const vaultEntries = [
     category: "Software Design",
     tags: ["Design Patterns", "OOP"],
     content: "Five design principles intended to make software designs more understandable, flexible, and maintainable."
+  },
+  {
+    id: "3",
+    title: "ACID Properties",
+    category: "Database",
+    tags: ["Data", "Consistency"],
+    content: "Atomicity, Consistency, Isolation, Durability. The standard properties for reliable database transactions."
+  },
+  {
+    id: "4",
+    title: "Circuit Breaker",
+    category: "Distributed Systems",
+    tags: ["Resilience", "Patterns"],
+    content: "A design pattern used to detect failures and encapsulate the logic of preventing a failure from constantly recurring."
+  },
+  {
+    id: "5",
+    title: "Sharding vs Partitioning",
+    category: "Database",
+    tags: ["Scaling", "Architecture"],
+    content: "Partitioning splits a database into smaller chunks within a single instance. Sharding distributes those chunks across multiple servers."
+  },
+  {
+    id: "6",
+    title: "Idempotency",
+    category: "API Design",
+    tags: ["REST", "Reliability"],
+    content: "A property of certain operations in mathematics and computer science whereby they can be applied multiple times without changing the result beyond the initial application."
+  },
+  {
+    id: "7",
+    title: "The Twelve-Factor App",
+    category: "Methodology",
+    tags: ["Cloud Native", "DevOps"],
+    content: "A methodology for building software-as-a-service apps that adhere to declarative formats, clean contracts, and deployment on modern cloud platforms."
+  },
+  {
+    id: "8",
+    title: "CORS",
+    category: "Web Security",
+    tags: ["Browser", "Security"],
+    content: "Cross-Origin Resource Sharing. A mechanism that uses additional HTTP headers to tell browsers to give a web application running at one origin, access to selected resources from a different origin."
   }
 ];
 

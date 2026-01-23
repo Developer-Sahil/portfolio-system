@@ -5,19 +5,26 @@ from dotenv import load_dotenv
 
 async def test():
     load_dotenv()
-    print("Testing Email Configuration...")
-    print(f"Username: {os.getenv('MAIL_USERNAME')}")
-    print(f"Port: {os.getenv('MAIL_PORT')}")
+    print("Testing Formspree Email Service...")
     
-    try:
-        await email_service.send_email(
-            "Test Email",
-            [os.getenv("MAIL_USERNAME")],
-            "<h1>This is a test email</h1>"
-        )
-        print("Email sent successfully!")
-    except Exception as e:
-        print(f"Error sending email: {e}")
+    endpoint = os.getenv('FORMSPREE_ENDPOINT')
+    print(f"Endpoint Configured: {'Yes' if endpoint else 'No'}")
+    
+    if not endpoint:
+        print("Please set FORMSPREE_ENDPOINT in .env")
+        return
+
+    print("Sending test email...")
+    success = await email_service.send_email(
+        "Test Email from Portfolio",
+        ["sahilsharmamrp@zohomail.com"], # This acts as reply-to in the new logic
+        "<h1>This is a test message via Formspree</h1>"
+    )
+    
+    if success:
+        print("SUCCESS: Email sent to Formspree!")
+    else:
+        print("FAILURE: Could not send email.")
 
 if __name__ == "__main__":
     asyncio.run(test())
