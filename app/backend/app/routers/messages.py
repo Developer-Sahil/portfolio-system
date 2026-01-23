@@ -1,8 +1,9 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from typing import List
 from datetime import datetime
 from app.models.content import Message, MessageCreate
 from app.core.firebase import db
+from app.core.limiter import limiter
 import uuid
 
 router = APIRouter()
@@ -11,7 +12,8 @@ from app.core.email import email_service
 import os
 
 @router.post("/", response_model=Message)
-async def create_message(message: MessageCreate):
+@limiter.limit("5/minute")
+async def create_message(request: Request, message: MessageCreate):
     doc_ref = db.collection(u'messages').document()
     message_dict = message.dict()
     message_dict['id'] = doc_ref.id

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Filter } from 'lucide-react';
 import Layout from '../components/layout/Layout';
-// import { allProjects } from '../data/mock'; // Removed mock
 import api from '../lib/api';
 import { Badge } from '../components/ui/badge';
 import { Input } from '../components/ui/input';

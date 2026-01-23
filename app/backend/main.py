@@ -1,12 +1,21 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import projects, writings, systems, vault, arena, auth
+from app.routers import projects, writings, systems, vault, arena
+from slowapi import _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
+from slowapi.middleware import SlowAPIMiddleware
+from app.core.limiter import limiter
 
 app = FastAPI(
     title="Portfolio System API",
     description="Backend API for Sahil Sharma's Portfolio System",
     version="1.0.0"
 )
+
+# Add Rate Limiting Middleware
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.add_middleware(SlowAPIMiddleware)
 
 # CORS Configuration
 origins = [
@@ -24,7 +33,6 @@ app.add_middleware(
 )
 
 # Include Routers
-app.include_router(auth.router, prefix="/api/v1/auth", tags=["Auth"])
 app.include_router(projects.router, prefix="/api/v1/projects", tags=["Projects"])
 app.include_router(writings.router, prefix="/api/v1/writings", tags=["Writings"])
 app.include_router(systems.router, prefix="/api/v1/systems", tags=["Systems"])
