@@ -17,6 +17,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Button } from '../components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import MermaidDiagram from '../components/ui/MermaidDiagram';
 
 export default function ProjectDetailPage() {
   const { slug } = useParams();
@@ -88,6 +89,28 @@ export default function ProjectDetailPage() {
       setAiExplanation("Sorry, I couldn't generate an explanation at this moment. Please check if the Gemini API Key is configured.");
     } finally {
       setAiLoading(false);
+    }
+  };
+
+  // Custom Markdown Components
+  const MarkdownComponents = {
+    code({ node, inline, className, children, ...props }) {
+      const match = /language-(\w+)/.exec(className || '');
+      const isMermaid = match && match[1] === 'mermaid';
+
+      if (!inline && isMermaid) {
+        return <MermaidDiagram chart={String(children).replace(/\n$/, '')} />;
+      }
+
+      return !inline && match ? (
+        <code className={className} {...props}>
+          {children}
+        </code>
+      ) : (
+        <code className="bg-secondary/50 px-1.5 py-0.5 rounded text-sm font-mono text-foreground font-medium border border-border/50" {...props}>
+          {children}
+        </code>
+      );
     }
   };
 
@@ -230,7 +253,7 @@ export default function ProjectDetailPage() {
           {aiExplanation && !aiLoading && (
             <div className="p-6 bg-glass-bg rounded-xl border border-glass-border backdrop-blur-md">
               <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground leading-relaxed">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                <ReactMarkdown remarkPlugins={[remarkGfm]} components={MarkdownComponents}>
                   {aiExplanation}
                 </ReactMarkdown>
               </div>
@@ -276,7 +299,7 @@ export default function ProjectDetailPage() {
                   Project Overview
                 </h3>
                 <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground leading-relaxed">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{project.overview}</ReactMarkdown>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={MarkdownComponents}>{project.overview}</ReactMarkdown>
                 </div>
               </div>
             </TabsContent>
@@ -287,7 +310,7 @@ export default function ProjectDetailPage() {
                   Motivation
                 </h3>
                 <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground leading-relaxed">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={MarkdownComponents}>
                     {project.motivation || 'Motivation details coming soon.'}
                   </ReactMarkdown>
                 </div>
@@ -314,7 +337,7 @@ export default function ProjectDetailPage() {
                   {expandedSection === 'hld' && (
                     <div className="px-6 pb-6 border-t border-glass-border pt-6">
                       <div className="prose prose-sm dark:prose-invert max-w-none text-muted-foreground leading-relaxed">
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        <ReactMarkdown remarkPlugins={[remarkGfm]} components={MarkdownComponents}>
                           {project.hld || 'High-level design documentation coming soon.'}
                         </ReactMarkdown>
                       </div>
@@ -340,7 +363,7 @@ export default function ProjectDetailPage() {
                   {expandedSection === 'lld' && (
                     <div className="px-6 pb-6 border-t border-glass-border pt-6">
                       <div className="prose prose-sm dark:prose-invert max-w-none text-muted-foreground leading-relaxed">
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        <ReactMarkdown remarkPlugins={[remarkGfm]} components={MarkdownComponents}>
                           {project.lld || 'Low-level design documentation coming soon.'}
                         </ReactMarkdown>
                       </div>
@@ -358,7 +381,7 @@ export default function ProjectDetailPage() {
                     Architecture Decisions
                   </h3>
                   <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground leading-relaxed">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={MarkdownComponents}>
                       {project.architectureDecisions || 'Architecture decision records coming soon.'}
                     </ReactMarkdown>
                   </div>
