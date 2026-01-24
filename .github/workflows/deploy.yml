@@ -71,7 +71,7 @@ jobs:
         # We pass VITE_API_BASE_URL as a build arg or create a temp .env file
         run: |
           cd app/frontend
-          echo "VITE_API_BASE_URL=${{ env.BACKEND_URL }}" > .env.production
+          echo "VITE_API_URL=${{ env.BACKEND_URL }}" >> .env.production
           gcloud builds submit --tag gcr.io/$PROJECT_ID/$FRONTEND_SERVICE
 
       - name: Deploy Frontend to Cloud Run
