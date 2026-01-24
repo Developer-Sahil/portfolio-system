@@ -36,10 +36,14 @@ print(f"DEBUG: Final CORS Origins: {origins}")
 
 app.add_middleware(
     CORSMiddleware,
-    # Permissive CORS - Allow all origins, but disable credentials (cookies)
-    # Bearer tokens in headers will still work
-    allow_origins=["*"],
-    allow_credentials=False,
+    # Explicitly allow the known frontend URL hardcoded
+    allow_origins=[
+        *origins, 
+        "https://portfolio-frontend-980859154686.us-central1.run.app"
+    ],
+    # Also allow via regex for any variations
+    allow_origin_regex=r"https://portfolio-frontend-.*\.run\.app",
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
