@@ -16,7 +16,24 @@ if not firebase_admin._apps:
             firebase_admin.initialize_app(cred)
         elif os.getenv("FIREBASE_CREDENTIALS"):
             print("Loading Firebase credentials from FIREBASE_CREDENTIALS env var")
-            cred_dict = json.loads(os.getenv("FIREBASE_CREDENTIALS"))
+            import json
+            import base64
+            import binascii
+
+            creds_val = os.getenv("FIREBASE_CREDENTIALS")
+            
+            try:
+                # Try parsing as JSON first
+                cred_dict = json.loads(creds_val)
+            except json.JSONDecodeError:
+                try:
+                    # If JSON fails, try Base64 decoding
+                    decoded_val = base64.b64decode(creds_val).decode("utf-8")
+                    cred_dict = json.loads(decoded_val)
+                except (binascii.Error, json.JSONDecodeError) as e:
+                    print(f"Failed to decode FIREBASE_CREDENTIALS: {e}")
+                    raise e
+
             cred = credentials.Certificate(cred_dict)
             firebase_admin.initialize_app(cred)
         else:

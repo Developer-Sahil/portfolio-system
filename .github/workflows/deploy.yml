@@ -32,6 +32,11 @@ jobs:
           cd app/backend
           gcloud builds submit --tag gcr.io/$PROJECT_ID/$BACKEND_SERVICE
 
+      - name: Prepare Secrets
+        id: secrets
+        run: |
+          echo "FIREBASE_CREDENTIALS_B64=$(echo '${{ secrets.GCP_SA_KEY }}' | base64 -w 0)" >> $GITHUB_ENV
+
       - name: Deploy Backend to Cloud Run
         run: |
           gcloud run deploy $BACKEND_SERVICE \
@@ -39,7 +44,7 @@ jobs:
             --platform managed \
             --region $REGION \
             --allow-unauthenticated \
-            --set-env-vars "ALLOWED_ORIGINS=*,GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }},FIREBASE_CREDENTIALS=${{ secrets.GCP_SA_KEY }},FORMSPREE_ENDPOINT=${{ secrets.FORMSPREE_ENDPOINT }}"
+            --set-env-vars "ALLOWED_ORIGINS=*,GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }},FIREBASE_CREDENTIALS=${{ env.FIREBASE_CREDENTIALS_B64 }},FORMSPREE_ENDPOINT=${{ secrets.FORMSPREE_ENDPOINT }}"
 
   deploy-frontend:
     needs: deploy-backend
