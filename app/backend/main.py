@@ -21,7 +21,9 @@ app.add_middleware(SlowAPIMiddleware)
 # Read from env or use default local development origins
 import os
 raw_origins = os.getenv("ALLOWED_ORIGINS", "")
-env_origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
+print(f"DEBUG: Cloud Run ALLOWED_ORIGINS: {raw_origins}")
+
+env_origins = [origin.strip().rstrip("/") for origin in raw_origins.split(",") if origin.strip()]
 
 default_origins = [
     "http://localhost:5173",
@@ -30,6 +32,7 @@ default_origins = [
 ]
 
 origins = env_origins if env_origins else default_origins
+print(f"DEBUG: Final CORS Origins: {origins}")
 
 app.add_middleware(
     CORSMiddleware,
