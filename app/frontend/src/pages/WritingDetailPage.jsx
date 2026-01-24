@@ -6,6 +6,8 @@ import Layout from '../components/layout/Layout';
 import api from '../lib/api';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export default function WritingDetailPage() {
     const { slug } = useParams();
@@ -125,21 +127,15 @@ export default function WritingDetailPage() {
                     </div>
 
                     {/* Content */}
-                    <div className="prose prose-lg prose-invert max-w-none">
+                    <div className="prose prose-lg max-w-none">
                         <p className="text-xl text-foreground leading-relaxed font-serif italic mb-8 border-l-4 border-primary pl-6">
                             {writing.excerpt}
                         </p>
 
-                        <div className="space-y-6 text-muted-foreground leading-relaxed">
-                            {writing.content ? (
-                                writing.content.split('\n\n').map((paragraph, idx) => (
-                                    <p key={idx}>{paragraph}</p>
-                                ))
-                            ) : (
-                                <p className="text-muted-foreground italic">
-                                    [Full content not available in mock data. This is where the markdown content would be rendered.]
-                                </p>
-                            )}
+                        <div className="text-muted-foreground leading-relaxed">
+                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                {writing.content || '*Content not available.*'}
+                            </ReactMarkdown>
                         </div>
                     </div>
                 </div>

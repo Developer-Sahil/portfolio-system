@@ -1,9 +1,10 @@
 from fastapi import APIRouter, HTTPException, Depends
-from typing import List
+from typing import List, Optional
 from app.models.content import Project, ProjectCreate
 from app.core.firebase import db
 from app.dependencies import get_current_user
 from datetime import datetime
+from pydantic import BaseModel
 
 router = APIRouter()
 
@@ -37,6 +38,30 @@ def read_project(project_id: str):
         return doc.to_dict()
     else:
         raise HTTPException(status_code=404, detail="Project not found")
+
+class ExplainRequest(BaseModel):
+    persona: str
+
+@router.post("/slug/{slug}/explain")
+async def explain_project(slug: str, request: ExplainRequest):
+    """
+    Generate an AI explanation for a project based on a persona.
+    """
+    # 1. Fetch Project Data (Reuse Firestore logic)
+    project_data = None
+    docs = db.collection(u'projects').where(u'slug', u'==', slug).stream()
+    for doc in docs:
+        project_data = doc.to_dict()
+        break
+    
+    if not project_data:
+         raise HTTPException(status_code=404, detail="Project not found")
+    
+    # 2. Call Gemini Service
+    from app.services.gemini import generate_project_explanation
+    explanation = generate_project_explanation(project_data, request.persona)
+    
+    return {"explanation": explanation}
 
 @router.put("/{project_id}", response_model=Project)
 def update_project(project_id: str, project: ProjectCreate, user=Depends(get_current_user)):

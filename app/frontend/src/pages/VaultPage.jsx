@@ -5,6 +5,8 @@ import { vaultEntries as vaultData } from '../data/mock';
 // import api from '../lib/api';
 import { Badge } from '../components/ui/badge';
 import { Input } from '../components/ui/input';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export default function VaultPage() {
   const vaultEntries = vaultData;
@@ -147,9 +149,11 @@ export default function VaultPage() {
                         <h3 className="font-serif text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
                           {entry.title}
                         </h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                          {entry.content}
-                        </p>
+                        <div className="text-muted-foreground text-sm leading-relaxed mb-4 prose prose-sm max-w-none">
+                          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                            {entry.content}
+                          </ReactMarkdown>
+                        </div>
                         <div className="flex flex-wrap gap-2">
                           {entry.tags.map((tag) => (
                             <Badge

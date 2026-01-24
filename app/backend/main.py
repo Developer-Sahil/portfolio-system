@@ -18,11 +18,18 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 app.add_middleware(SlowAPIMiddleware)
 
 # CORS Configuration
-origins = [
+# Read from env or use default local development origins
+import os
+raw_origins = os.getenv("ALLOWED_ORIGINS", "")
+env_origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
+
+default_origins = [
     "http://localhost:5173",
     "http://localhost:3000",
     "http://127.0.0.1:5173",
 ]
+
+origins = env_origins if env_origins else default_origins
 
 app.add_middleware(
     CORSMiddleware,

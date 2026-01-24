@@ -73,22 +73,22 @@ export default function ProjectDetailPage() {
     setExpandedSection(expandedSection === section ? null : section);
   };
 
-  // Mock AI explanation - will be replaced with real API call
+  // AI explanation handler
   const getAiExplanation = async (depth) => {
     setAiLoading(true);
     setSelectedDepth(depth);
 
-    // Simulating API call delay
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    const explanations = {
-      recruiter: `**${project.title}** is a ${project.oneLiner.toLowerCase()} This project demonstrates proficiency in ${project.techStack.slice(0, 3).join(', ')}. Key achievement: Built a production-ready system that solves real-world problems with clean architecture and scalable design patterns.`,
-      engineer: `## Technical Overview\n\n${project.overview}\n\n### Architecture Highlights\n- **Tech Stack**: ${project.techStack.join(', ')}\n- **Key Patterns**: Microservices, Event-driven architecture\n- **Scalability**: Designed for horizontal scaling\n\n### Implementation Details\n${project.lld || 'Detailed implementation documentation available on request.'}`,
-      architect: `## Deep Dive: ${project.title}\n\n### High-Level Design\n${project.hld || 'Architecture documentation available.'}\n\n### Low-Level Design\n${project.lld || 'Component details available.'}\n\n### Architecture Decisions\n${project.architectureDecisions || 'Decision records available.'}\n\n### Failure Points & Scaling Considerations\n${project.failurePoints || 'Failure analysis available.'}\n\n### Trade-offs Made\n- Chose ${project.techStack[0]} for its ecosystem and community support\n- Prioritized read performance over write performance\n- Implemented eventual consistency for better availability`,
-    };
-
-    setAiExplanation(explanations[depth]);
-    setAiLoading(false);
+    try {
+      const response = await api.post(`/projects/slug/${slug}/explain`, {
+        persona: depth
+      });
+      setAiExplanation(response.data.explanation);
+    } catch (err) {
+      console.error("Failed to fetch explanation", err);
+      setAiExplanation("Sorry, I couldn't generate an explanation at this moment. Please check if the Gemini API Key is configured.");
+    } finally {
+      setAiLoading(false);
+    }
   };
 
   return (
@@ -229,42 +229,10 @@ export default function ProjectDetailPage() {
 
           {aiExplanation && !aiLoading && (
             <div className="p-6 bg-glass-bg rounded-xl border border-glass-border backdrop-blur-md">
-              <div className="prose prose-sm max-w-none prose-invert">
-                {aiExplanation.split('\n').map((line, i) => {
-                  if (line.startsWith('## ')) {
-                    return (
-                      <h2 key={i} className="font-serif text-xl font-semibold text-foreground mt-4 mb-2">
-                        {line.replace('## ', '')}
-                      </h2>
-                    );
-                  }
-                  if (line.startsWith('### ')) {
-                    return (
-                      <h3 key={i} className="font-serif text-lg font-semibold text-foreground mt-3 mb-2">
-                        {line.replace('### ', '')}
-                      </h3>
-                    );
-                  }
-                  if (line.startsWith('- ')) {
-                    return (
-                      <li key={i} className="text-muted-foreground ml-4">
-                        {line.replace('- ', '')}
-                      </li>
-                    );
-                  }
-                  if (line.startsWith('**')) {
-                    return (
-                      <p key={i} className="text-foreground font-medium">
-                        {line.replace(/\*\*/g, '')}
-                      </p>
-                    );
-                  }
-                  return line ? (
-                    <p key={i} className="text-muted-foreground mb-2">
-                      {line}
-                    </p>
-                  ) : null;
-                })}
+              <div className="prose prose-sm max-w-none dark:prose-invert text-muted-foreground leading-relaxed">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {aiExplanation}
+                </ReactMarkdown>
               </div>
             </div>
           )}

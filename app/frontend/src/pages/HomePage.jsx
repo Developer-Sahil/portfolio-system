@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Code2, Brain, Database, Cloud, Trophy, Award, Star, Zap, Terminal, Coffee, Folder, Users, FileText, Activity, Fingerprint, Lightbulb, BarChart3 } from 'lucide-react';
 import Layout from '../components/layout/Layout';
+import CompetitiveAchievements from '../components/home/CompetitiveAchievements';
 import { personalInfo, expertiseDomains, testimonials } from '../data/mock';
 import api from '../lib/api';
 import { Badge } from '../components/ui/badge';
@@ -409,87 +410,7 @@ export default function HomePage() {
           </div>
 
           {/* Achievement & Badges Section (Redesigned) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            {/* Competitive Excellence (Left Card) */}
-            <div className="lg:col-span-7 bg-blue-50 border border-blue-100 rounded-[2.5rem] p-10 lg:p-12 relative overflow-hidden group shadow-xl shadow-blue-900/5">
-              {/* Background Glows */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -mr-16 -mt-16 transition-opacity group-hover:opacity-30"></div>
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -ml-16 -mb-16 transition-opacity group-hover:opacity-30"></div>
-
-              <div className="relative z-10">
-                <div className="flex items-center gap-4 mb-4">
-                  <span className="text-xs font-bold uppercase tracking-[0.15em] text-blue-600">Competitive Excellence</span>
-                  <div className="h-px w-24 bg-blue-200"></div>
-                </div>
-
-                <div className="flex flex-col md:flex-row gap-8 items-start mb-8">
-                  <div className="w-20 h-20 rounded-2xl bg-white border border-blue-100 flex items-center justify-center flex-shrink-0">
-                    <Trophy className="w-10 h-10 text-blue-600" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="px-3 py-1 rounded-md bg-white border border-blue-100 text-[10px] font-bold uppercase tracking-wider text-blue-600 shadow-sm">
-                        National Level Podium
-                      </span>
-                      <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">
-                        IIT Kanpur GDSC • 2024
-                      </span>
-                    </div>
-                    <h3 className="font-sans text-5xl lg:text-6xl text-slate-900 font-extrabold italic tracking-tighter leading-none mb-1">
-                      1st Runner Up
-                    </h3>
-                  </div>
-                </div>
-
-                <p className="text-blue-900/70 font-light text-lg leading-relaxed max-w-lg mb-8">
-                  Outranked <span className="text-blue-700 font-semibold">800+ teams</span> at "The Return Journey" National Hackathon. Recognised for <span className="text-blue-600 font-medium">architectural innovation</span> and high-pressure system delivery.
-                </p>
-
-                <div className="border-l-2 border-blue-200 pl-4">
-                  <p className="text-xs font-bold uppercase tracking-wider text-blue-400 mb-1">Success Rate</p>
-                  <p className="text-2xl font-serif font-bold text-slate-900">Top 0.2%</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Technical Badges (Right Area - 2x2 Grid) */}
-            <div className="lg:col-span-5 flex flex-col justify-center">
-              <div className="flex items-center gap-4 mb-8">
-                <span className="text-xs font-bold uppercase tracking-[0.15em] text-blue-400">Technical Badges</span>
-                <div className="h-px w-full bg-slate-800"></div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Badge 1 */}
-                <div className="bg-blue-50 border border-blue-100 hover:border-blue-500/30 p-6 rounded-2xl transition-all duration-300 group">
-                  <Cloud className="w-6 h-6 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
-                  <h4 className="text-slate-900 font-bold text-sm uppercase tracking-wide mb-1">Cloud Architecting</h4>
-                  <p className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">AWS Academy</p>
-                </div>
-
-                {/* Badge 2 */}
-                <div className="bg-blue-50 border border-blue-100 hover:border-blue-500/30 p-6 rounded-2xl transition-all duration-300 group">
-                  <Award className="w-6 h-6 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
-                  <h4 className="text-slate-900 font-bold text-sm uppercase tracking-wide mb-1">Analytics in BigQuery</h4>
-                  <p className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Google Skills</p>
-                </div>
-
-                {/* Badge 3 */}
-                <div className="bg-blue-50 border border-blue-100 hover:border-blue-500/30 p-6 rounded-2xl transition-all duration-300 group">
-                  <Database className="w-6 h-6 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
-                  <h4 className="text-slate-900 font-bold text-sm uppercase tracking-wide mb-1">Cloud Foundations</h4>
-                  <p className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">AWS Academy</p>
-                </div>
-
-                {/* Badge 4 */}
-                <div className="bg-blue-50 border border-blue-100 hover:border-blue-500/30 p-6 rounded-2xl transition-all duration-300 group">
-                  <Coffee className="w-6 h-6 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
-                  <h4 className="text-slate-900 font-bold text-sm uppercase tracking-wide mb-1">MLOps for Generative AI</h4>
-                  <p className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Google Skills</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <CompetitiveAchievements />
 
         </div>
       </section>
