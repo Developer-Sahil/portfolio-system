@@ -39,7 +39,7 @@ jobs:
             --platform managed \
             --region $REGION \
             --allow-unauthenticated \
-            --set-env-vars "ALLOWED_ORIGINS=*,GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}"
+            --set-env-vars "ALLOWED_ORIGINS=*,GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }},FIREBASE_CREDENTIALS=${{ secrets.GCP_SA_KEY }},FORMSPREE_ENDPOINT=${{ secrets.FORMSPREE_ENDPOINT }}"
 
   deploy-frontend:
     needs: deploy-backend
