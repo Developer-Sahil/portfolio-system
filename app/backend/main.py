@@ -36,7 +36,13 @@ print(f"DEBUG: Final CORS Origins: {origins}")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    # Explicitly allow the known frontend URL hardcoded, just in case env var fails
+    allow_origins=[
+        *origins, 
+        "https://portfolio-frontend-980859154686.us-central1.run.app"
+    ],
+    # Also allow via regex for any variations (http vs https, trailing slash, etc)
+    allow_origin_regex=r"https://portfolio-frontend-.*\.run\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
