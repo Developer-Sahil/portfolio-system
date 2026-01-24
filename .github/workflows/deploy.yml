@@ -44,7 +44,7 @@ jobs:
             --platform managed \
             --region $REGION \
             --allow-unauthenticated \
-            --set-env-vars "ALLOWED_ORIGINS=*,GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }},FIREBASE_CREDENTIALS=${{ env.FIREBASE_CREDENTIALS_B64 }},FORMSPREE_ENDPOINT=${{ secrets.FORMSPREE_ENDPOINT }}"
+            --set-env-vars "ALLOWED_ORIGINS=https://portfolio-frontend-980859154686.us-central1.run.app,GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }},FIREBASE_CREDENTIALS=${{ env.FIREBASE_CREDENTIALS_B64 }},FORMSPREE_ENDPOINT=${{ secrets.FORMSPREE_ENDPOINT }}"
 
   deploy-frontend:
     needs: deploy-backend
