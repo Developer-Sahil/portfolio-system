@@ -24,7 +24,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-4xl px-4">
+      <header className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-full max-w-4xl px-4">
         <div className="bg-white/80 backdrop-blur-xl border border-white/50 shadow-lg shadow-blue-900/5 rounded-full px-6 py-3 flex items-center justify-between">
           {/* Logo / Name */}
           <Link
@@ -69,7 +69,7 @@ export default function Header() {
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-white/95 backdrop-blur-3xl pt-24 px-6 md:hidden animate-in fade-in slide-in-from-top-10 duration-200">
+        <div className="fixed inset-0 z-[99] bg-white/95 backdrop-blur-3xl pt-24 px-6 md:hidden animate-in fade-in slide-in-from-top-10 duration-200">
           <nav className="flex flex-col gap-4">
             {navigation.map((item) => {
               const isActive = location.pathname === item.href;

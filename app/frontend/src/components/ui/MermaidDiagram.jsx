@@ -7,6 +7,19 @@ mermaid.initialize({
     theme: 'dark',
     securityLevel: 'loose',
     fontFamily: 'ui-sans-serif, system-ui, sans-serif',
+    flowchart: {
+        htmlLabels: true,
+        useMaxWidth: true,
+    },
+    themeVariables: {
+        darkMode: true,
+        primaryColor: '#1e293b', // slate-800
+        primaryTextColor: '#f8fafc', // slate-50
+        secondaryColor: '#334155', // slate-700
+        tertiaryColor: '#0f172a', // slate-950
+        lineColor: '#94a3b8', // slate-400
+        fontSize: '16px',
+    }
 });
 
 const MermaidDiagram = ({ chart }) => {

@@ -4,7 +4,7 @@ export const personalInfo = {
   name: "Sahil Sharma",
   title: "Upcoming Software Engineer @ IBM",
   tagline: "System Thinker. Builder. Engineer.",
-  doctrine: "I don't just write code—I architect systems that scale, adapt, and endure. Every line serves a purpose. Every decision is deliberate.",
+  doctrine: "I design and build scalable software systems with a focus on clarity, performance, and long-term maintainability.",
   expertise: [
     "Software Engineering",
     "AI/ML",
