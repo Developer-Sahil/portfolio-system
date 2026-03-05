@@ -70,9 +70,7 @@ export default function HomePage() {
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <Badge variant="ice-blue" className="mb-6 px-4 py-1.5 text-sm uppercase tracking-wider font-semibold">
-                  {personalInfo.title}
-                </Badge>
+
                 <h1 className="font-serif text-5xl lg:text-6xl font-bold mb-6 text-slate-900 tracking-tight leading-tight">
                   {personalInfo.tagline}
                 </h1>
