@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Code2, Brain, Database, Cloud, Trophy, Award, Star, Zap, Terminal, Coffee, Folder, Users, FileText, Activity, Fingerprint, Lightbulb, BarChart3 } from 'lucide-react';
 import Layout from '../components/layout/Layout';
-import CompetitiveAchievements from '../components/home/CompetitiveAchievements';
+// import CompetitiveAchievements from '../components/home/CompetitiveAchievements';
 import { personalInfo, expertiseDomains, testimonials } from '../data/mock';
 import api from '../lib/api';
 import { Badge } from '../components/ui/badge';
@@ -408,7 +408,7 @@ export default function HomePage() {
           </div>
 
           {/* Achievement & Badges Section (Redesigned) */}
-          <CompetitiveAchievements />
+          {/* <CompetitiveAchievements /> */}
 
         </div>
       </section>
